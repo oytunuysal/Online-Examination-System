@@ -52,7 +52,6 @@ const ApplicationRoutes = () => {
                             <Route path="/login" component={Login} />
                             <Route path="/users" component={UserList} />
                             <Route path="/adduser" component={AddNewUser} />
-                            <Route path="/addbook" component={AddNewBook} />
                             <Redirect to="/login" from="/" />
                         </Switch>
                     </Content>
