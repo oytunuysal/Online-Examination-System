@@ -1,10 +1,10 @@
 server:
-  port: 8081
+  port: 8080
 spring:
   datasource:
-    username: root
-    password: password
-    url: jdbc:mysql://localhost:3306/jss
+    username: oytunuysal
+    password: Sifre123*
+    url: jdbc:mysql://oytunmysql.mysql.database.azure.com
   jpa:
     hibernate:
       ddl-auto: update
