@@ -17,31 +17,12 @@ const SideNavigation = () => {
     const handleLoginClick = () => {
         history.push("/login");
     };
-
     const handleUserClick = () => {
         history.push("/users");
-    };
-
-    const handleBookClick = () => {
-        history.push("/books");
-    };
-
-    const handleFavClick = () => {
-        history.push("/myfavlist");
-    };
-    const handleReadClick = () => {
-        history.push("/myreadlist");
     };
     const handleAddUser = () => {
         history.push("/adduser");
     };
-    const handleAddBook = () => {
-        history.push("/addbook");
-    };
-    const handleEditBook = () => {
-        history.push("/editbooks");
-    };
-
 
 
     return (
@@ -67,24 +48,7 @@ const SideNavigation = () => {
                     </Menu.Item>
                     <Menu.Item key="6" onClick={handleAddUser}><UserAddOutlined />
                         <span> Add New User </span></Menu.Item>
-                    <Menu.Item key="7" onClick={handleAddBook}><FileAddOutlined />
-                        <span> Add New Book </span></Menu.Item>
-                    <Menu.Item key="8" onClick={handleEditBook}><DiffOutlined />
-                        <span> Edit Books </span></Menu.Item>
                 </SubMenu>
-                <Menu.Item key="3" onClick={handleBookClick}>
-                    <ReadOutlined />
-                    <span> Books </span>
-                </Menu.Item>
-                <Menu.Item key="4" onClick={handleFavClick}>
-                    <LikeOutlined />
-                    <span> Favorites </span>
-                </Menu.Item>
-                <Menu.Item key="5" onClick={handleReadClick}>
-                    <BookOutlined />
-                    <span> Read List </span>
-                </Menu.Item>
-
             </Menu>
         </div>
     );

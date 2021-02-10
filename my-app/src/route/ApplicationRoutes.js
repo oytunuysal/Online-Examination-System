@@ -10,11 +10,6 @@ import {
 import Login from "../pages/login/login";
 import UserList from "../pages/user/UserList";
 import AddNewUser from "../pages/user/NewUser";
-import AddNewBook from "../pages/book/AddBook";
-import BookList from "../pages/book/BookList";
-import FavList from "../pages/book/FavList";
-import ReadList from "../pages/book/ReadList";
-import EditBooks from "../pages/book/EditBooks";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
@@ -58,10 +53,6 @@ const ApplicationRoutes = () => {
                             <Route path="/users" component={UserList} />
                             <Route path="/adduser" component={AddNewUser} />
                             <Route path="/addbook" component={AddNewBook} />
-                            <Route path="/books" component={BookList} />
-                            <Route path="/myfavlist" component={FavList} />
-                            <Route path="/myreadlist" component={ReadList} />
-                            <Route path="/editbooks" component={EditBooks} />
                             <Redirect to="/login" from="/" />
                         </Switch>
                     </Content>
