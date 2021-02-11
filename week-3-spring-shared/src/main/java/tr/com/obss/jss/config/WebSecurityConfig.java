@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers(HttpMethod.POST, "/api/users").permitAll()
-                .anyRequest().hasAnyRole("INSTRUCTOR", "STUDENT")
+                .anyRequest().hasAnyRole("ADMIN", "USER")
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler((req, resp, ex) -> resp.setStatus(SC_FORBIDDEN)) // if someone tries to access protected resource but doesn't have enough permissions

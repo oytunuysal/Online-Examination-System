@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 public class UserDTO {
 
     @NotBlank
-    @Size(max = 255, min = 3, message = "Lütfen geçerli bir mail giriniz")
+    @Size(max = 255, min = 3, message = "Lütfen geçerli bir kullanıcı adı giriniz")
     @Email
     private String mail;
 
