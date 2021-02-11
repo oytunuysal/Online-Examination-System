@@ -67,7 +67,7 @@ public class UserController {
     @GetMapping("/has-role-user")
     @ResponseBody
     public ResponseEntity<?> findByRoles() {
-        List<User> userList = userService.findByRoles(Arrays.asList("ROLE_USER"));
+        List<User> userList = userService.findByRoles(Arrays.asList("ROLE_STUDENT"));
         return ResponseEntity.ok(userList);
     }
 

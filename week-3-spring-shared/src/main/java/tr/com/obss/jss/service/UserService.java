@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
         User user = new User();
         user.setMail(userDto.getMail());
         user.setPassword(encoder.encode(userDto.getPassword()));
-        user.setRoles(Stream.of(roleRepository.findByName("ROLE_USER")).collect(Collectors.toSet()));
+        user.setRoles(Stream.of(roleRepository.findByName("ROLE_STUDENT")).collect(Collectors.toSet()));
         User savedUser = userRepository.save(user);
         /*
 
