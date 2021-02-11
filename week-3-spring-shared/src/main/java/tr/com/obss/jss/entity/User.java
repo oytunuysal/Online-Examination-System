@@ -33,6 +33,9 @@ public class User extends EntityBase {
     @JsonManagedReference
     private Set<Role> roles;
 
+    @OneToMany
+    private List<Result> results;
+
     public String getUsername() {
         return username;
     }
@@ -56,5 +59,15 @@ public class User extends EntityBase {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
+
+    
 
 }

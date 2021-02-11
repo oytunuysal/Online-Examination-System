@@ -24,6 +24,9 @@ public class Exam extends EntityBase {
     @JoinColumn(name="owner_id", nullable=false)
     private User owner;
 
+    @OneToMany
+    private List<Result> results;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Question> questions;
 
