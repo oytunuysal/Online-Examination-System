@@ -17,18 +17,18 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        boolean userRoleExists = roleRepository.existsByName("ROLE_USER");
-        if (!userRoleExists) {
-            Role userRole = new Role();
-            userRole.setName("ROLE_USER");
-            roleRepository.save(userRole);
+        boolean studentRoleExists = roleRepository.existsByName("ROLE_STUDENT");
+        if (!studentRoleExists) {
+            Role studentRole = new Role();
+            studentRole.setName("ROLE_STUDENT");
+            roleRepository.save(studentRole);
         }
 
-        boolean adminRoleExists = roleRepository.existsByName("ROLE_ADMIN");
-        if (!adminRoleExists) {
-            Role adminRole = new Role();
-            adminRole.setName("ROLE_ADMIN");
-            roleRepository.save(adminRole);
+        boolean instructorRoleExists = roleRepository.existsByName("ROLE_INSTRUCTOR");
+        if (!instructorRoleExists) {
+            Role instructorRole = new Role();
+            instructorRole.setName("ROLE_INSTRUCTOR");
+            roleRepository.save(instructorRole);
         }
     }
 }
