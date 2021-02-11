@@ -14,7 +14,7 @@ const AddNewUser = () => {
         Axios.post('http://localhost:8080/api/users', values, {withCredentials: true})
         .then(()=>{
             //if
-            history.push("/users").then(()=> (successMessage('User Added')));
+            history.push("/users");
         })
 
         

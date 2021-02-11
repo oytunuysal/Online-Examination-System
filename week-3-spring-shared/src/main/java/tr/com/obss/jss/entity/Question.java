@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "QUESTION")
-public class Question extends EntityBase{
+public class Question extends EntityBase {
 
     @Column(name = "TEXT", length = 255)
     private String questionText;
@@ -13,8 +13,8 @@ public class Question extends EntityBase{
     @Column(name = "POINT")
     private int point;
 
- //   @OneToMany(mappedBy = "QUESTION")
-  //  private List<String> possibleAnswers;
+    @ElementCollection
+    private List<String> possibleAnswers;
 
     @Column(name = "ANSWER")
     private String answer;
@@ -41,13 +41,13 @@ public class Question extends EntityBase{
         this.point = point;
     }
 
-/*    public List<String> getPossibleAnswers() {
+    public List<String> getPossibleAnswers() {
         return possibleAnswers;
     }
 
     public void setPossibleAnswers(List<String> possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
-    }*/
+    }
 
     public String getAnswer() {
         return answer;

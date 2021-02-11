@@ -4,8 +4,6 @@ import Title from "antd/lib/typography/Title";
 import { getUsers } from "../../service/UserService";
 import {successMessage } from "../../service/UserService";
 import Axios from "axios";
-import { SearchOutlined } from '@ant-design/icons';
-import Highlighter from 'react-highlight-words';
 const { Search } = Input;
 
 class UserList extends React.Component {

@@ -5,17 +5,6 @@ export const successMessage = (aMessage) => {
    return message.success(aMessage);
 };
 
-export const getAdminBooks = () => {
-    return axios.get("http://localhost:8080/api/books/admin", { withCredentials: true }).then((response) => {
-        return response.data.content.map((book) => ({
-            title: `${book.title}`,
-            author: `${book.author}`,
-            id: `${book.id}`,
-            active: book.active
-        }));
-    });
-};
-
 export const getUsers = () => {
     return axios.get("http://localhost:8080/api/users", { withCredentials: true }).then((response) => {
         return response.data.content.map((user) => ({
