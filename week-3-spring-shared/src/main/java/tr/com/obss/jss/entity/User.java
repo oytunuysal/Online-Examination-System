@@ -20,8 +20,8 @@ import java.util.Set;
 @Table(name = "USER")
 public class User extends EntityBase {
 
-    @Column(name = "USERNAME", length = 255, unique = true)
-    private String username;
+    @Column(name = "MAIL", length = 255, unique = true)
+    private String mail;
 
     @Column(name = "PASSWORD", length = 255)
     private String password;
@@ -33,12 +33,12 @@ public class User extends EntityBase {
     @JsonManagedReference
     private Set<Role> roles;
 
-    public String getUsername() {
-        return username;
+    public String getMail() {
+        return mail;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {

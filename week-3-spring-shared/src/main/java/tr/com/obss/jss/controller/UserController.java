@@ -59,8 +59,8 @@ public class UserController {
 
     @GetMapping("/search")
     @ResponseBody
-    public ResponseEntity<?> get(@RequestParam(name = "username", defaultValue = "") String username) {
-        List<User> userList = userService.findByUsername(username);
+    public ResponseEntity<?> get(@RequestParam(name = "mail", defaultValue = "") String mail) {
+        List<User> userList = userService.findByUsername(mail);
         return ResponseEntity.ok(userList);
     }
 

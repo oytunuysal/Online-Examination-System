@@ -24,7 +24,7 @@ public class UserCacheSingleton implements UserCache {
 
     @Override
     public void put(UserDTO user) {
-        users.put(user.getUsername(), user);
+        users.put(user.getMail(), user);
     }
 
     @Override

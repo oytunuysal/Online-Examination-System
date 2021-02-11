@@ -41,7 +41,7 @@ public class UserService implements UserDetailsService {
 
     public User save(UserDTO userDto) {
         User user = new User();
-        user.setUsername(userDto.getUsername());
+        user.setMail(userDto.getMail());
         user.setPassword(encoder.encode(userDto.getPassword()));
         user.setRoles(Stream.of(roleRepository.findByName("ROLE_USER")).collect(Collectors.toSet()));
         User savedUser = userRepository.save(user);
@@ -89,7 +89,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findByUsername(String name) {
-        return userRepository.findByUsernameStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(name);
+        return userRepository.findByMailStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(name);
     }
 
     public User update(long id, UserUpdateDTO dto) {
@@ -115,10 +115,10 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> byUsername = userRepository.findByUsername(username);
-        if (byUsername.isPresent()) {
-            return new MyUserDetails(byUsername.get());
+    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+        Optional<User> byMail = userRepository.findByMail(mail);
+        if (byMail.isPresent()) {
+            return new MyUserDetails(byMail.get());
         }
         throw new UsernameNotFoundException("Kullanıcı bulunamadı");
     }

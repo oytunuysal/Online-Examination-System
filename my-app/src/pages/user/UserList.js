@@ -21,8 +21,8 @@ class UserList extends React.Component {
             dataIndex: 'id',
         },
         {
-            title: 'Username',
-            dataIndex: 'username',
+            title: 'Mail',
+            dataIndex: 'mail',
 
         },
         {
@@ -72,8 +72,8 @@ class UserList extends React.Component {
 
                 users.map((user, index) => {
                     data.push({
-                        key: user.username,
-                        username: user.username,
+                        key: user.mail,
+                        mail: user.mail,
                         id: user.id,
                         active: user.active,
                     });

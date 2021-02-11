@@ -9,18 +9,18 @@ public class UserDTO {
     @NotBlank
     @Size(max = 255, min = 3, message = "Lütfen geçerli bir kullanıcı adı giriniz")
     @Email
-    private String username;
+    private String mail;
 
     @NotBlank
     @Size(max = 255, min = 3, message = "Lütfen geçerli bir şifre giriniz")
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getMail() {
+        return mail;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {
