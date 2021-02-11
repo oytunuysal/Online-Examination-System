@@ -2,10 +2,7 @@ import React from 'react';
 import { Menu } from "antd";
 import { useHistory } from "react-router";
 import {
-    UserOutlined, LoginOutlined, MailOutlined
-    , UserAddOutlined, TeamOutlined, DiffOutlined
-    , BookOutlined, ToolOutlined, LikeOutlined, ReadOutlined
-    , FileAddOutlined
+    LoginOutlined, UserAddOutlined, TeamOutlined, ToolOutlined
 } from "@ant-design/icons";
 const { SubMenu } = Menu;
 
