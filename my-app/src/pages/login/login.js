@@ -29,7 +29,7 @@ const NormalLoginForm = () => {
             body: formBody
         }).then(()=>{
             //if
-            history.push("/users");
+            history.push("/books");
         })
 
         
