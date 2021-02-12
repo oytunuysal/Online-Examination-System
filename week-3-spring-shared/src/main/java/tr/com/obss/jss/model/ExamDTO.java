@@ -1,33 +1,34 @@
-package tr.com.obss.jss.entity;
+package tr.com.obss.jss.model;
 
-import javax.persistence.*;
+import tr.com.obss.jss.entity.Question;
+import tr.com.obss.jss.entity.Result;
+import tr.com.obss.jss.entity.User;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "EXAM")
-public class Exam extends EntityBase {
-    
-    @Column(name = "NAME", length = 255, unique = false)
+public class ExamDTO {
+    @NotBlank
+    @Size(max = 255, min = 3, message = "Lütfen geçerli bir sınav ismi giriniz")
     private String name;
 
-    @Column(name = "START_DATE", length = 255, unique = false)
+    @NotBlank
     private Date startDate;
 
-    @Column(name = "END_DATE", length = 255, unique = false)
+    @NotBlank
     private Date endDate;
 
-    @Column(name = "url", length = 255, unique = true)
-    private String url; //??
+    @NotBlank
+    private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="owner_id", nullable=false)
+    @NotBlank
     private User owner;
 
-    @OneToMany
     private List<Result> results;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @NotBlank
     private List<Question> questions;
 
     public String getName() {
@@ -46,6 +47,14 @@ public class Exam extends EntityBase {
         this.startDate = startDate;
     }
 
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -62,12 +71,12 @@ public class Exam extends EntityBase {
         this.owner = owner;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public List<Result> getResults() {
+        return results;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 
     public List<Question> getQuestions() {

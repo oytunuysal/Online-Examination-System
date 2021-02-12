@@ -32,7 +32,6 @@ const SideNavigation = () => {
                 }}>
             </div>
             <Menu theme="dark" mode="inline">
-
                 <Menu.Item key="1" onClick={handleLoginClick}>
                     <LoginOutlined />
                     <span> Login </span>
