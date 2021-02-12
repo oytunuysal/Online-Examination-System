@@ -6,6 +6,9 @@ import tr.com.obss.jss.entity.User;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -14,21 +17,17 @@ public class ExamDTO {
     @Size(max = 255, min = 3, message = "Lütfen geçerli bir sınav ismi giriniz")
     private String name;
 
-    @NotBlank
     private Date startDate;
 
-    @NotBlank
     private Date endDate;
 
     @NotBlank
     private String url;
 
     @NotBlank
-    private User owner;
+    private String ownerId;
 
-    private List<Result> results;
-
-    @NotBlank
+    @JsonManagedReference
     private List<Question> questions;
 
     public String getName() {
@@ -63,20 +62,12 @@ public class ExamDTO {
         this.url = url;
     }
 
-    public User getOwner() {
-        return owner;
+    public String getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public List<Result> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Result> results) {
-        this.results = results;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
     public List<Question> getQuestions() {
@@ -86,4 +77,7 @@ public class ExamDTO {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+
+    
+
 }

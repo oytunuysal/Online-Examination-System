@@ -1,6 +1,9 @@
 package tr.com.obss.jss.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.List;
 
 @Entity
@@ -23,6 +26,7 @@ public class Question extends EntityBase {
     private double penaltyPoint;
 
     @ManyToOne
+    @JsonBackReference
     private Exam exam;
 
     public String getQuestionText() {

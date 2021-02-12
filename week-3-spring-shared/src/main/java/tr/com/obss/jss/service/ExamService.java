@@ -36,13 +36,16 @@ public class ExamService implements ExamDetailsService {
         exam.setName(examDto.getName());
         exam.setStartDate(examDto.getStartDate());
         exam.setEndDate(examDto.getEndDate());
-        exam.setOwner(examDto.getOwner());
-   //   exam.setOwner(Stream.of(roleRepository.findByName("ROLE_INSTRUCTOR")).collect(Collectors.toSet()));
-        exam.setQuestions(examDto.getQuestions());
-    //    exam.setQuestions(Stream.of(questionRepository.findById("EXAM_ID")).collect(Collectors.toSet()));
-        exam.setUrl(examDto.getUrl());
-        Exam savedExam = examRepository.save(exam);
-        return savedExam;
+        Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()) );
+        if (owner.isPresent()) {
+            exam.setOwner(owner.get());
+            // exam.setOwner(Stream.of(roleRepository.findByName("ROLE_INSTRUCTOR")).collect(Collectors.toSet()));
+            exam.setQuestions(examDto.getQuestions());
+            // exam.setQuestions(Stream.of(questionRepository.findById("EXAM_ID")).collect(Collectors.toSet()));
+            exam.setUrl(examDto.getUrl()); //create random unique url here
+            return examRepository.save(exam);
+        }
+        throw new IllegalArgumentException("Book not found");
     }
 
     public Page<Exam> findAll(int pageSize, int pageNumber) {
