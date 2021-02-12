@@ -49,8 +49,8 @@ public class ResultService implements ResultDetailsService {
         return resultRepository.getByIdNative(id);
     }
 
-    public List<Result> findByName(String name) {
-        return resultRepository.findByNameStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(name);
+    public List<Result> findById(String name) {
+        return resultRepository.findByIdStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(name);
     }
 
     /*public Result update(long id, ResultUpdateDTO dto) {
