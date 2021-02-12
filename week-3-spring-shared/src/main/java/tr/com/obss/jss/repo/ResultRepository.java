@@ -15,5 +15,5 @@ public interface ResultRepository extends JpaRepository<Result, Long> {
     @Query(value = "select * from Exam e where e.id = :id", nativeQuery = true)
     Optional<Result> getByIdNative(long id);
 
-    List<Result> findByNameStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(String name);
+    List<Result> findByIdStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(String id);
 }
