@@ -21,6 +21,10 @@ const SideNavigation = () => {
         history.push("/adduser");
     };
 
+    
+    const handleAddExam = () => {
+        history.push("/addexam");
+    };
 
     return (
         <div>
@@ -42,6 +46,8 @@ const SideNavigation = () => {
                         <TeamOutlined />
                         <span> User List </span>
                     </Menu.Item>
+                    <Menu.Item key="3" onClick={handleAddExam}><UserAddOutlined />
+                        <span> Add New Exam </span></Menu.Item>
                     <Menu.Item key="6" onClick={handleAddUser}><UserAddOutlined />
                         <span> Add New User </span></Menu.Item>
                 </SubMenu>

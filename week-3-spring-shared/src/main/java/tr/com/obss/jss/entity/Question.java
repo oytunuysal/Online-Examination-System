@@ -2,31 +2,28 @@ package tr.com.obss.jss.entity;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import java.util.List;
 
 @Entity
 @Table(name = "QUESTION")
 public class Question extends EntityBase {
 
-    @Column(name = "TEXT", length = 255)
+    @Column(name = "TEXT", length = 255, unique = false)
     private String questionText;
 
-    @Column(name = "POINT")
+    @Column(name = "POINT", unique = false)
     private int point;
 
     @ElementCollection
     private List<String> possibleAnswers;
 
-    @Column(name = "ANSWER")
+    @Column(name = "ANSWER", unique = false)
     private String answer;
 
-    @Column(name = "PENALTY_POINT")
+    @Column(name = "PENALTY_POINT", unique = false)
     private double penaltyPoint;
 
     @ManyToOne
-    @JsonBackReference
     private Exam exam;
 
     public String getQuestionText() {

@@ -27,7 +27,6 @@ public class ExamDTO {
     @NotBlank
     private String ownerId;
 
-    @JsonManagedReference
     private List<Question> questions;
 
     public String getName() {
@@ -77,7 +76,6 @@ public class ExamDTO {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
-
     
 
 }
