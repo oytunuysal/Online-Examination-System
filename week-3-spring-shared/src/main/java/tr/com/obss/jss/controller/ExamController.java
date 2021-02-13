@@ -74,9 +74,10 @@ public class ExamController {
         return ResponseEntity.ok(exam);
     }
 
-    @PostMapping("")
+    @PostMapping(value = "")
     @ResponseBody
     public ResponseEntity<?> post(@Valid @RequestBody ExamDTO examDTO) {
+        
         Exam exam = examService.save(examDTO);
 
         return ResponseEntity.ok(exam);

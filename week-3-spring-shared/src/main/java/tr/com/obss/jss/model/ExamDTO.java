@@ -7,10 +7,13 @@ import tr.com.obss.jss.entity.User;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public class ExamDTO {
     @NotBlank
@@ -76,6 +79,7 @@ public class ExamDTO {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
-    
+
+
 
 }

@@ -1,8 +1,17 @@
 package tr.com.obss.jss.entity;
 
-import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "EXAM")
@@ -24,7 +33,7 @@ public class Exam extends EntityBase {
     @JoinColumn(name="owner_id", nullable=false)
     private User owner;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Result> results;
 
     @OneToMany(cascade = CascadeType.ALL)
