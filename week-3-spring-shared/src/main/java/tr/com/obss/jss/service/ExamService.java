@@ -53,7 +53,6 @@ public class ExamService implements ExamDetailsService {
                 question.setQuestionText(aQuestionDTO.getQuestionText());
                 question.setPoint(aQuestionDTO.getPoint());
                 question.setPossibleAnswers(aQuestionDTO.getPossibleAnswers());
-                question.setAnswer(aQuestionDTO.getAnswer());
                 question.setPenaltyPoint(aQuestionDTO.getPenaltyPoint());
                 question.setExam(exam);
                 exam.getQuestions().add(question);

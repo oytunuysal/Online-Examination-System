@@ -1,12 +1,9 @@
 package tr.com.obss.jss.entity;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.engine.internal.Cascade;
 
 import java.util.List;
 
@@ -20,11 +17,8 @@ public class Question extends EntityBase {
     @Column(name = "POINT", unique = false)
     private String point;
 
-    @ElementCollection
-    private List<String> possibleAnswers;
-
-    @Column(name = "ANSWER", unique = false)
-    private String answer;
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Answer> possibleAnswers;
 
     @Column(name = "PENALTY_POINT", unique = false)
     private String penaltyPoint;
@@ -41,20 +35,12 @@ public class Question extends EntityBase {
         this.questionText = questionText;
     }
 
-    public List<String> getPossibleAnswers() {
+    public List<Answer> getPossibleAnswers() {
         return possibleAnswers;
     }
 
-    public void setPossibleAnswers(List<String> possibleAnswers) {
+    public void setPossibleAnswers(List<Answer> possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
     }
 
     public Exam getExam() {

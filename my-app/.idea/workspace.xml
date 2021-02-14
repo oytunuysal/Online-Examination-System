@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d7374a70-c9e0-4a72-b8a5-6eb3abba9a91" name="Default Changelist" comment="username -&gt; mail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/SideNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/SideNavigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/entity/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/entity/Exam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/repo/ExamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/repo/ExamRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/entity/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/model/QuestionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/model/QuestionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/repo/QuestionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/repo/QuestionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/ExamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/ExamService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +28,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../week-3-spring-shared" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

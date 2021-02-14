@@ -1,5 +1,7 @@
 package tr.com.obss.jss.model;
 
+import tr.com.obss.jss.entity.Answer;
+
 import java.util.List;
 
 public class QuestionDTO {
@@ -7,9 +9,7 @@ public class QuestionDTO {
 
     private String point;
 
-    private List<String> possibleAnswers;
-
-    private String answer;
+    private List<Answer> possibleAnswers;
 
     private String penaltyPoint;
 
@@ -29,20 +29,12 @@ public class QuestionDTO {
         this.point = point;
     }
 
-    public List<String> getPossibleAnswers() {
+    public List<Answer> getPossibleAnswers() {
         return possibleAnswers;
     }
 
-    public void setPossibleAnswers(List<String> possibleAnswers) {
+    public void setPossibleAnswers(List<Answer> possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
     }
 
     public String getPenaltyPoint() {
