@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "EXAM")
 public class Exam extends EntityBase {
@@ -29,14 +31,19 @@ public class Exam extends EntityBase {
     @Column(name = "url", length = 255, unique = true)
     private String url; //??
 
+    @Column(name = "owner_id", unique = false)
+    private String owner;
+/*
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="owner_id", nullable=false)
     private User owner;
-
+*/
     @OneToMany(cascade = CascadeType.ALL)
     private List<Result> results;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Question> questions;
 
     public String getName() {
@@ -63,13 +70,6 @@ public class Exam extends EntityBase {
         this.url = url;
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
 
     public Date getEndDate() {
         return endDate;
@@ -85,5 +85,21 @@ public class Exam extends EntityBase {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

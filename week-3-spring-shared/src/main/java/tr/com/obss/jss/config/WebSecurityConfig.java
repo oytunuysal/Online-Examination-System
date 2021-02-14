@@ -64,7 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
-                .antMatchers(HttpMethod.POST, "/api/users").permitAll()
                 .anyRequest().hasAnyRole("INSTRUCTOR", "STUDENT")
                 .and()
                 .exceptionHandling()

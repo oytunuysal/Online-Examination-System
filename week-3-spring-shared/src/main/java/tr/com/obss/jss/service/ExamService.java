@@ -8,11 +8,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import tr.com.obss.jss.entity.Exam;
+import tr.com.obss.jss.entity.Question;
 import tr.com.obss.jss.entity.User;
 import tr.com.obss.jss.model.*;
 import tr.com.obss.jss.repo.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,16 +39,33 @@ public class ExamService implements ExamDetailsService {
         exam.setName(examDto.getName());
         exam.setStartDate(examDto.getStartDate());
         exam.setEndDate(examDto.getEndDate());
-        Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()) );
-        if (owner.isPresent()) {
-            exam.setOwner(owner.get());
+        exam.setQuestions(new ArrayList<>());
+        exam.setResults(new ArrayList<>());
+        exam.setUrl(examDto.getUrl()); //create random unique url here
+       // Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()) );
+
+        //if (true) {
+            List<QuestionDTO> questionDTO = examDto.getQuestions();
+            
+            for (QuestionDTO aQuestionDTO : questionDTO) {
+                Question question = new Question();
+                question.setQuestionText(aQuestionDTO.getQuestionText());
+                question.setPoint(aQuestionDTO.getPoint());
+                question.setPossibleAnswers(aQuestionDTO.getPossibleAnswers());
+                question.setAnswer(aQuestionDTO.getAnswer());
+                question.setPenaltyPoint(aQuestionDTO.getPenaltyPoint());
+                question.setExam(exam);
+                exam.getQuestions().add(question);
+            }
+            exam.setOwner(examDto.getOwnerId());
+           // exam.setOwner(owner.get());
             // exam.setOwner(Stream.of(roleRepository.findByName("ROLE_INSTRUCTOR")).collect(Collectors.toSet()));
-            exam.setQuestions(examDto.getQuestions());
+            //exam.setQuestions(examDto.getQuestions());
             // exam.setQuestions(Stream.of(questionRepository.findById("EXAM_ID")).collect(Collectors.toSet()));
-            exam.setUrl(examDto.getUrl()); //create random unique url here
+            
             return examRepository.save(exam);
-        }
-        throw new IllegalArgumentException("Book not found");
+        //}
+        //throw new IllegalArgumentException("Owner not found");
     }
 
     public Page<Exam> findAll(int pageSize, int pageNumber) {

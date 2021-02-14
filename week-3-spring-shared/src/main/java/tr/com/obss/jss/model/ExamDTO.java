@@ -16,21 +16,17 @@ import java.util.List;
 import java.util.Set;
 
 public class ExamDTO {
-    @NotBlank
-    @Size(max = 255, min = 3, message = "Lütfen geçerli bir sınav ismi giriniz")
     private String name;
 
     private Date startDate;
 
     private Date endDate;
 
-    @NotBlank
     private String url;
 
-    @NotBlank
     private String ownerId;
 
-    private List<Question> questions;
+    private List<QuestionDTO> questions;
 
     public String getName() {
         return name;
@@ -72,13 +68,15 @@ public class ExamDTO {
         this.ownerId = ownerId;
     }
 
-    public List<Question> getQuestions() {
+    public List<QuestionDTO> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(List<QuestionDTO> questions) {
         this.questions = questions;
     }
+
+  
 
 
 
