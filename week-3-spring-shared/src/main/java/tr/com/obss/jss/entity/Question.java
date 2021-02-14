@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "QUESTION")
 public class Question extends EntityBase {
-
+    //change data types
     @Column(name = "TEXT", length = 255, unique = false)
     private String questionText;
 

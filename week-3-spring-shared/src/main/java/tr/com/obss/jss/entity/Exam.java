@@ -1,6 +1,5 @@
 package tr.com.obss.jss.entity;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -13,12 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "EXAM")
 public class Exam extends EntityBase {
-    
+
     @Column(name = "NAME", length = 255, unique = false)
     private String name;
 
@@ -29,16 +29,12 @@ public class Exam extends EntityBase {
     private Date endDate;
 
     @Column(name = "url", length = 255, unique = true)
-    private String url; //??
-
-    @Column(name = "owner_id", unique = false)
-    private String owner;
-/*
+    private String url; // ??
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="owner_id", nullable=false)
+    @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
-*/
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Result> results;
 
@@ -70,7 +66,6 @@ public class Exam extends EntityBase {
         this.url = url;
     }
 
-
     public Date getEndDate() {
         return endDate;
     }
@@ -95,11 +90,12 @@ public class Exam extends EntityBase {
         this.results = results;
     }
 
-    public String getOwner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(String owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
+
 }

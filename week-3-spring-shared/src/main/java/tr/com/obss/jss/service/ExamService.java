@@ -42,9 +42,10 @@ public class ExamService implements ExamDetailsService {
         exam.setQuestions(new ArrayList<>());
         exam.setResults(new ArrayList<>());
         exam.setUrl(examDto.getUrl()); //create random unique url here
-       // Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()) );
+        Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()) );
 
-        //if (true) {
+        if (owner.isPresent()) {
+            exam.setOwner(owner.get());
             List<QuestionDTO> questionDTO = examDto.getQuestions();
             
             for (QuestionDTO aQuestionDTO : questionDTO) {
@@ -57,15 +58,10 @@ public class ExamService implements ExamDetailsService {
                 question.setExam(exam);
                 exam.getQuestions().add(question);
             }
-            exam.setOwner(examDto.getOwnerId());
-           // exam.setOwner(owner.get());
-            // exam.setOwner(Stream.of(roleRepository.findByName("ROLE_INSTRUCTOR")).collect(Collectors.toSet()));
-            //exam.setQuestions(examDto.getQuestions());
-            // exam.setQuestions(Stream.of(questionRepository.findById("EXAM_ID")).collect(Collectors.toSet()));
             
             return examRepository.save(exam);
-        //}
-        //throw new IllegalArgumentException("Owner not found");
+        }
+        throw new IllegalArgumentException("Owner not found");
     }
 
     public Page<Exam> findAll(int pageSize, int pageNumber) {
