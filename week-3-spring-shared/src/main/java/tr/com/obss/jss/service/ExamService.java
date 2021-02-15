@@ -69,7 +69,13 @@ public class ExamService implements ExamDetailsService {
     }
 
     public Optional<Exam> findById(long id) {
-        return examRepository.getByIdNative(id);
+        Optional<Exam> exam = examRepository.getByIdNative(id);
+
+            return exam;
+    }
+
+    public Optional<Exam> findByUrl(String url){
+        return examRepository.findByUrl(url);
     }
 
     public List<Exam> findByName(String name) {
