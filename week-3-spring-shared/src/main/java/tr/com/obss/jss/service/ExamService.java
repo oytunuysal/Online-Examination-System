@@ -106,6 +106,8 @@ public class ExamService implements ExamDetailsService {
         throw new IllegalArgumentException("Sınav bulunamadı.");
     }
 
+    //merhabalar arkadaşlar
+
     @Override
     public ExamDetails loadExamByOwner(String name) throws UsernameNotFoundException {
         Optional<User> byUsername = userRepository.findByUsername(name);
