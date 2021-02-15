@@ -29,7 +29,7 @@ class AddNewExam extends React.Component{
     // Axios.post("http://localhost:8080/login");
     Axios.post(`${"http://localhost:8080/"}api/exams`, values, { withCredentials: true })
       .then(() => {
-        successMessage('Project Plan Created!')
+        successMessage('Exam Created!')
       })
   }
 
@@ -71,9 +71,6 @@ class AddNewExam extends React.Component{
             </Form.Item>
             <Form.Item name="owner" rules={[{ required: true, message: "Is required" }]}>
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="owner" />
-            </Form.Item>
-            <Form.Item name="url" rules={[{ required: true, message: "Is required" }]}>
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="url" />
             </Form.Item>
 
 

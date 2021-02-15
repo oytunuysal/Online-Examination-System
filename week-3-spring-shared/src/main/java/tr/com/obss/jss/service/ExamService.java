@@ -1,5 +1,6 @@
 package tr.com.obss.jss.service;
 
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,7 @@ import tr.com.obss.jss.repo.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,13 +43,20 @@ public class ExamService implements ExamDetailsService {
         exam.setEndDate(examDto.getEndDate());
         exam.setQuestions(new ArrayList<>());
         exam.setResults(new ArrayList<>());
-        exam.setUrl(examDto.getUrl()); //create random unique url here
+        Random random = new Random();
+        String r = RandomString.make(10);
+        int uniqueURL = random.nextInt(13983816);
+        String url = "/api/exams/startExam/exam" + r;
+    //    String url = "/api/exams/startExam/exam" + Integer.toString(uniqueURL);
+        exam.setUrl(url);
+     //   exam.setUrl(examDto.getUrl()); //create random unique url here
         Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()) );
 
         if (owner.isPresent()) {
             exam.setOwner(owner.get());
             List<QuestionDTO> questionDTO = examDto.getQuestions();
-            
+
+
             for (QuestionDTO aQuestionDTO : questionDTO) {
                 Question question = new Question();
                 question.setQuestionText(aQuestionDTO.getQuestionText());
