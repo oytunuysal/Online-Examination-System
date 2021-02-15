@@ -107,6 +107,7 @@ public class ExamService implements ExamDetailsService {
     }
 
     //merhabalar arkadaşlar
+    //nasilsiniz
 
     @Override
     public ExamDetails loadExamByOwner(String name) throws UsernameNotFoundException {
