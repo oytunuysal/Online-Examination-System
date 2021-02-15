@@ -31,8 +31,8 @@ public class ExamController {
 
     @GetMapping("")
     @ResponseBody
-    public ResponseEntity<?> get(@RequestParam(name="pageSize", defaultValue = "2") int pageSize,
-                                 @RequestParam(name="pageNumber", defaultValue = "0") int pageNumber) {
+    public ResponseEntity<?> get(@RequestParam(name = "pageSize", defaultValue = "2") int pageSize,
+            @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber) {
         return ResponseEntity.ok(examService.findAll(pageSize, pageNumber));
     }
 
@@ -53,12 +53,13 @@ public class ExamController {
         return ResponseEntity.ok(userList);
     }
 
- /*   @GetMapping("/has-role-user")
-    @ResponseBody
-    public ResponseEntity<?> findByRoles() {
-        List<User> userList = userService.findByRoles(Arrays.asList("ROLE_STUDENT"));
-        return ResponseEntity.ok(userList);
-    }*/
+    /*
+     * @GetMapping("/has-role-user")
+     * 
+     * @ResponseBody public ResponseEntity<?> findByRoles() { List<User> userList =
+     * userService.findByRoles(Arrays.asList("ROLE_STUDENT")); return
+     * ResponseEntity.ok(userList); }
+     */
 
     @PutMapping("/{id}")
     @ResponseBody
@@ -77,9 +78,22 @@ public class ExamController {
     @PostMapping(value = "")
     @ResponseBody
     public ResponseEntity<?> post(@Valid @RequestBody ExamDTO examDTO) {
-        
+
         Exam exam = examService.save(examDTO);
 
         return ResponseEntity.ok(exam);
+    }
+
+    @GetMapping("/startExam/{url}")
+    @ResponseBody
+    public ResponseEntity<?> getExam(@PathVariable String url) {
+        
+        Optional<Exam> exam = examService.findByUrl(url);
+        
+        if (exam.isPresent()) {
+            Exam anExam = exam.get();
+            return ResponseEntity.ok(anExam);
+        }
+        throw new IllegalArgumentException("Sınav bulunamadı.");
     }
 }

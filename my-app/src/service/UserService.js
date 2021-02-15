@@ -1,6 +1,8 @@
 import axios from "axios";
 import { message} from 'antd';
 
+export const url = "http://localhost:8080";
+
 export const successMessage = (aMessage) => {
    return message.success(aMessage);
 };
