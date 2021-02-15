@@ -19,7 +19,6 @@ import tr.com.obss.jss.repo.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -43,13 +42,9 @@ public class ExamService implements ExamDetailsService {
         exam.setEndDate(examDto.getEndDate());
         exam.setQuestions(new ArrayList<>());
         exam.setResults(new ArrayList<>());
-        Random random = new Random();
         String r = RandomString.make(10);
-        int uniqueURL = random.nextInt(13983816);
         String url = "/api/exams/startExam/exam" + r;
-    //    String url = "/api/exams/startExam/exam" + Integer.toString(uniqueURL);
         exam.setUrl(url);
-     //   exam.setUrl(examDto.getUrl()); //create random unique url here
         Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()) );
 
         if (owner.isPresent()) {
