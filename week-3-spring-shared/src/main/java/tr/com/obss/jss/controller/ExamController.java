@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.com.obss.jss.entity.Exam;
+import tr.com.obss.jss.entity.Result;
 import tr.com.obss.jss.entity.User;
 import tr.com.obss.jss.model.AnswerDTO;
 import tr.com.obss.jss.model.ExamDTO;
@@ -101,7 +102,7 @@ public class ExamController {
     @PostMapping("/endExam")
     @ResponseBody
     public ResponseEntity<?> postExam(@Valid @RequestBody List<AnswerDTO> answers){
-        System.out.println(answers);
-        return ResponseEntity.ok(answers);
+        Result result = examService.submitExam(answers);
+        return ResponseEntity.ok(result);
     }
 }

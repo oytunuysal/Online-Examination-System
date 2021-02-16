@@ -1,6 +1,7 @@
 package tr.com.obss.jss.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.CascadeType;
@@ -33,7 +34,9 @@ public class User extends EntityBase {
     @JsonManagedReference
     private Set<Role> roles;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
     private List<Result> results;
 
     public String getUsername() {
