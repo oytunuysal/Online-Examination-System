@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -49,19 +50,13 @@ public class ResultService implements ResultDetailsService {
         return resultRepository.getByIdNative(id);
     }
 
-    public List<Result> findById(String name) {
-        return resultRepository.findByIdStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(name);
+    public Result findTopByOrderByGrade(){
+        return resultRepository.findTopByOrderByGrade();
     }
 
-    /*public Result update(long id, ResultUpdateDTO dto) {
-        Optional<Result> byId = resultRepository.findById(id);
-        if (byId.isPresent()) {
-            Result result = byId.get();
-            return resultRepository.save(result);
-
-        }
-        throw new IllegalArgumentException("Sonuç bulunamadı.");
-    }*/
+    public List<Result> findByUsername(String name) {
+        return resultRepository.findByIdStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(name);
+    }
 
     public Result delete(long id) {
         Optional<Result> byId = resultRepository.findById(id);

@@ -1,25 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from "react-router";
-import { Layout } from "antd";
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Redirect,
-} from "react-router-dom";
 import { Row, Col, Input, Button, Form } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import Axios from 'axios';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import {successMessage} from '../../service/UserService';
 
-const NormalLoginForm = () => {
-const [collapse, setCollapse] = useState(false);
+
+const NormalLoginFormStudent = () => {
     const history = useHistory();
-const handleToggle = (event) => {
-        event.preventDefault();
-        collapse ? setCollapse(false) : setCollapse(true);
-    };
+
     const login = (values) => {
         var formBody = [];
         for (var property in values) {
@@ -29,7 +18,7 @@ const handleToggle = (event) => {
         }
         formBody = formBody.join("&");
 
-        fetch('http://localhost:8080/login', {
+        fetch('http://localhost:8080/loginStudent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -37,7 +26,7 @@ const handleToggle = (event) => {
             credentials: 'include',
             body: formBody
         }).then(()=>{
-            history.push("/addexam");
+            history.push("/users");//değiştir
         })
     };
 
@@ -65,4 +54,4 @@ const handleToggle = (event) => {
     );
 };
 
-export default NormalLoginForm;
+export default NormalLoginFormStudent;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SideNavigation from "../layout/SideNavigation";
+import SideNavigation from "../layout/SideN";
 import { Layout } from "antd";
 import {
     BrowserRouter as Router,
@@ -7,14 +7,16 @@ import {
     Switch,
     Redirect,
 } from "react-router-dom";
-import Login from "../pages/login/login";
 import UserList from "../pages/user/UserList";
+import Login from "../pages/login/login";
 import AddNewUser from "../pages/user/NewUser";
 import AddExam from "../pages/user/NewExam";
+import Global from "../pages/leaderboard/leaderBoard";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import Exam from '../pages/exam/Exam';
+import Main from '../route/main'
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 const ApplicationRoutes = () => {
     const [collapse, setCollapse] = useState(false);
@@ -31,16 +33,6 @@ const ApplicationRoutes = () => {
                     <SideNavigation />
                 </Sider>
                 <Layout>
-                    <Header className="siteLayoutBackground" style={{ padding: 0, background: "#001529" }}>
-                        {React.createElement(
-                            collapse ? MenuUnfoldOutlined : MenuFoldOutlined,
-                            {
-                                className: "trigger",
-                                onClick: handleToggle,
-                                style: { color: "#fff" },
-                            }
-                        )}
-                    </Header>
                     <Content
                         style={{
                             margin: "24px 16px",
@@ -51,11 +43,12 @@ const ApplicationRoutes = () => {
                         }}
                     >
                         <Switch>
-                            <Route path="/login" component={Login} />
                             <Route path="/users" component={UserList} />
+                            <Route path="/login" component={Login} />
                             <Route path="/adduser" component={AddNewUser} />
                             <Route path="/addexam" component={AddExam} />
                             <Route path="/exam" component={Exam} />
+                            <Route path="/global" component={Global} />
                             <Redirect to="/login" from="/" />
                         </Switch>
                     </Content>

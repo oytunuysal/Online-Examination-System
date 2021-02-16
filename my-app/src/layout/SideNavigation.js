@@ -9,18 +9,19 @@ const { SubMenu } = Menu;
 const SideNavigation = () => {
     const history = useHistory();
 
-    const handleLoginClick = () => {
-        history.push("/login");
-    };
+const handleLogin = () => {
+history.push("/login")};
     const handleUserClick = () => {
         history.push("/users");
     };
-    const handleAddUser = () => {
+    const handleSeeResult = () => {//öğretmene sonuçları listeler
         history.push("/adduser");
     };
-
     const handleAddExam = () => {
         history.push("/addexam");
+    };
+    const handleLeaderboard = () => {//global leaderboard'u gösterir
+        history.push("/");
     };
 
     return (
@@ -33,20 +34,19 @@ const SideNavigation = () => {
                 }}>
             </div>
             <Menu theme="dark" mode="inline">
-                <Menu.Item key="1" onClick={handleLoginClick}>
-                    <LoginOutlined />
-                    <span> Login </span>
-                </Menu.Item>
-
-                <SubMenu key="sub1" icon={<ToolOutlined />} title="Admin">
+<Menu.Item key="1" onClick={handleLogin}><UserAddOutlined />
+                        <span> Login </span></Menu.Item>
+                <SubMenu key="sub1" icon={<ToolOutlined />} title="Instructor">
                     <Menu.Item key="2" onClick={handleUserClick}>
                         <TeamOutlined />
                         <span> User List </span>
                     </Menu.Item>
                     <Menu.Item key="3" onClick={handleAddExam}><UserAddOutlined />
                         <span> Add New Exam </span></Menu.Item>
-                    <Menu.Item key="6" onClick={handleAddUser}><UserAddOutlined />
-                        <span> Add New User </span></Menu.Item>
+                    <Menu.Item key="4" onClick={handleSeeResult}><UserAddOutlined />
+                        <span> See Results </span></Menu.Item>
+                    <Menu.Item key="5" onClick={handleLeaderboard}><UserAddOutlined />
+                        <span> See Global Leaderboard </span></Menu.Item>
                 </SubMenu>
             </Menu>
         </div>

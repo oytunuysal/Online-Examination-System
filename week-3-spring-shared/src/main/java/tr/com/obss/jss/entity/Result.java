@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Result extends EntityBase {
 
     @Column(name = "GRADE")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private double grade;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -24,6 +25,7 @@ public class Result extends EntityBase {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JsonManagedReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private User student;
 
     public double getGrade() {
