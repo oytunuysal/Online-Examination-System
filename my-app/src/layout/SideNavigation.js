@@ -21,7 +21,6 @@ const SideNavigation = () => {
         history.push("/adduser");
     };
 
-    
     const handleAddExam = () => {
         history.push("/addexam");
     };
