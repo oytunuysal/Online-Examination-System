@@ -13,6 +13,7 @@ class Exam extends React.Component {
     state = {
         questions: [],
         possibleAnswers: [],
+        answers: [],
         isLoading: true,
         error: null
     };
@@ -35,16 +36,13 @@ class Exam extends React.Component {
             title: 'Answer',
             key: 'possibleAnswers',
             render: (question) => (
-                <Radio.Group>
-
+                <Radio.Group onChange={this.answered.bind(this)}>
                     {
-
                         question.possibleAnswers.map((element) => {
-                            return (<Radio value={element.text}>
+                            return (<Radio key={element.id} value={{ answerId: element.id, questionId: question.id }}>
                                 {element.text}
                             </Radio>)
                         }
-
                         )}
                 </Radio.Group >
 
@@ -53,14 +51,6 @@ class Exam extends React.Component {
         },
     ]
 
-    answers = [
-        {
-            title: 'Answer',
-            dataIndex: 'possibleAnswer',
-        },
-    ]
-
-
 
 
     onChange(date, dateString) {
@@ -68,16 +58,24 @@ class Exam extends React.Component {
     }
 
     answered(answer) {
-        console.log(answer);
+        console.log("answerId " + answer.target.value.answerId);
+        console.log("questionId " + answer.target.value.questionId);
+        this.state.answers.push({answerId: answer.target.value.answerId, questionId: answer.target.value.questionId});
+        console.log(this.state.answers);
     }
 
 
-    addPublishExam(values) {
+    addPublishExam() {
         // Axios.post("http://localhost:8080/login");
-        Axios.post(`${url}/api/exams/endExam/useridhere?`, values, { withCredentials: true })//????????
+        
+        Axios.post(`${url}/api/exams/endExam`, this.state.answers, { withCredentials: true })//????????
             .then(() => {
-                successMessage('Exam pulled!')
+                successMessage('Exam pushed!')
             })
+        
+
+        console.log(this.state.answers)
+
     }
 
     componentDidMount() {
@@ -110,11 +108,7 @@ class Exam extends React.Component {
 
                 }
                 );
-
-
-
             });
-            console.log(data);
 
             this.setState({
                 questions: data,
@@ -134,9 +128,15 @@ class Exam extends React.Component {
                     ) : (
                             <Row type="flex" justify="center" style={{ minHeight: "100vh" }}>
                                 <Col>
-                                    <Form name="login-form" style={{ maxWidth: 300 }} onFinish={this.addPublishExam}>
-                                        <Table columns={this.columns} dataSource={questions} />
-                                        <Table columns={this.answers} dataSource={possibleAnswers} />
+                                    <Form name="login-form" style={{ maxWidth: 300 }} onFinish={this.addPublishExam.bind(this)}>
+                                        <Form.Item>
+                                            <Table columns={this.columns} dataSource={questions} />
+                                        </Form.Item>
+                                        <Form.Item>
+                                            <Button type="primary" htmlType="submit" style={{ width: 100 }}>
+                                                Submit
+                                            </Button>
+                                        </Form.Item>
                                     </Form>
                                 </Col>
                             </Row>

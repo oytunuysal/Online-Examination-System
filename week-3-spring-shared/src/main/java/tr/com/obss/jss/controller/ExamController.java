@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.com.obss.jss.entity.Exam;
 import tr.com.obss.jss.entity.User;
+import tr.com.obss.jss.model.AnswerDTO;
 import tr.com.obss.jss.model.ExamDTO;
 import tr.com.obss.jss.model.ExamUpdateDTO;
 import tr.com.obss.jss.service.ExamService;
@@ -95,5 +96,12 @@ public class ExamController {
             return ResponseEntity.ok(anExam);
         }
         throw new IllegalArgumentException("Sınav bulunamadı.");
+    }
+
+    @PostMapping("/endExam")
+    @ResponseBody
+    public ResponseEntity<?> postExam(@Valid @RequestBody List<AnswerDTO> answers){
+        System.out.println(answers);
+        return ResponseEntity.ok(answers);
     }
 }
