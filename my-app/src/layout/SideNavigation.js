@@ -6,8 +6,6 @@ import {
 } from "@ant-design/icons";
 const { SubMenu } = Menu;
 
-
-
 const SideNavigation = () => {
     const history = useHistory();
 
