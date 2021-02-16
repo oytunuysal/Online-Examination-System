@@ -4,23 +4,23 @@ import javax.validation.constraints.NotBlank;
 
 public class AnswerDTO {
     @NotBlank
-    private String questionId;
+    private long questionId;
     
-    private String answerId;
+    private long answerId;
 
-    public String getQuestionId() {
+    public long getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(String questionId) {
+    public void setQuestionId(long questionId) {
         this.questionId = questionId;
     }
 
-    public String getAnswerId() {
+    public long getAnswerId() {
         return answerId;
     }
 
-    public void setAnswerId(String answerId) {
+    public void setAnswerId(long answerId) {
         this.answerId = answerId;
     }
 

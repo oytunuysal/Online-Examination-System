@@ -38,6 +38,8 @@ public class Exam extends EntityBase {
     private User owner;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
     private List<Result> results;
 
     @OneToMany(cascade = CascadeType.ALL)

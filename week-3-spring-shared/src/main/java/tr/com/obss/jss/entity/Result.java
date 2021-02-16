@@ -8,6 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "RESULT")
 public class Result extends EntityBase {
@@ -16,9 +19,11 @@ public class Result extends EntityBase {
     private double grade;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Exam exam;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private User student;
 
     public double getGrade() {

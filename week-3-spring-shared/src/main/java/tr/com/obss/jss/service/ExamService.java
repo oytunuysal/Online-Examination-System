@@ -10,8 +10,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import tr.com.obss.jss.entity.Answer;
 import tr.com.obss.jss.entity.Exam;
 import tr.com.obss.jss.entity.Question;
+import tr.com.obss.jss.entity.Result;
 import tr.com.obss.jss.entity.User;
 import tr.com.obss.jss.model.*;
 import tr.com.obss.jss.repo.*;
@@ -34,6 +36,8 @@ public class ExamService implements ExamDetailsService {
     private QuestionRepository questionRepository;
     @Autowired
     private ResultRepository resultRepository;
+    @Autowired
+    private AnswerRepository answerRepository;
 
     public Exam save(ExamDTO examDto) {
         Exam exam = new Exam();
@@ -45,12 +49,11 @@ public class ExamService implements ExamDetailsService {
         String r = RandomString.make(10);
         String url = "/api/exams/startExam/exam" + r;
         exam.setUrl(url);
-        Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()) );
+        Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()));
 
         if (owner.isPresent()) {
             exam.setOwner(owner.get());
             List<QuestionDTO> questionDTO = examDto.getQuestions();
-
 
             for (QuestionDTO aQuestionDTO : questionDTO) {
                 Question question = new Question();
@@ -61,10 +64,57 @@ public class ExamService implements ExamDetailsService {
                 question.setExam(exam);
                 exam.getQuestions().add(question);
             }
-            
+
             return examRepository.save(exam);
         }
         throw new IllegalArgumentException("Owner not found");
+    }
+
+    public Result submitExam(List<AnswerDTO> answers) {
+        int totalPoints = 0;
+        long studentId = 4;
+        long examId = 8;
+        boolean isAnswer;
+        Optional<Exam> exam = examRepository.findById(examId);
+        Exam theExam = null;
+        Question question;
+
+        if (exam.isPresent()) {
+            theExam = exam.get();
+        }
+        for (AnswerDTO answer : answers) {
+
+            Optional<Answer> aOptional = answerRepository.findById(answer.getAnswerId());
+            if (aOptional.isPresent()) {
+                Answer theAnswer = aOptional.get();
+                isAnswer = theAnswer.isAnswer();
+                question = questionRepository.findById(answer.getQuestionId()).get();
+                if (isAnswer) {
+                    totalPoints += Integer.parseInt(question.getPoint());
+
+                } else {
+                    totalPoints -= Integer.parseInt(question.getPenaltyPoint());
+                }
+            }
+
+        }
+
+        Result result = new Result();
+        result.setGrade(totalPoints);
+        result.setStudent(userRepository.findById(studentId).get());
+        if (theExam != null) {
+            result.setExam(theExam);
+            theExam.getResults().add(result);
+            examRepository.save(theExam);
+        }
+
+        Optional<User> studentOptional = userRepository.findById(studentId);
+        if(studentOptional.isPresent()){
+            User student = studentOptional.get();
+            student.getResults().add(result);
+            userRepository.save(student);
+        }
+        return resultRepository.save(result);
     }
 
     public Page<Exam> findAll(int pageSize, int pageNumber) {
@@ -75,10 +125,10 @@ public class ExamService implements ExamDetailsService {
     public Optional<Exam> findById(long id) {
         Optional<Exam> exam = examRepository.getByIdNative(id);
 
-            return exam;
+        return exam;
     }
 
-    public Optional<Exam> findByUrl(String url){
+    public Optional<Exam> findByUrl(String url) {
         return examRepository.findByUrl(url);
     }
 
@@ -106,8 +156,8 @@ public class ExamService implements ExamDetailsService {
         throw new IllegalArgumentException("Sınav bulunamadı.");
     }
 
-    //merhabalar arkadaşlar
-    //nasilsiniz
+    // merhabalar arkadaşlar
+    // nasilsiniz
 
     @Override
     public ExamDetails loadExamByOwner(String name) throws UsernameNotFoundException {
