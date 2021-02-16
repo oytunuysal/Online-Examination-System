@@ -33,9 +33,9 @@ public class ExamController {
 
     @GetMapping("")
     @ResponseBody
-    public ResponseEntity<?> get(@RequestParam(name = "pageSize", defaultValue = "2") int pageSize,
+    public ResponseEntity<?> get(@RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
             @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber) {
-        return ResponseEntity.ok(examService.findAll(pageSize, pageNumber));
+        return ResponseEntity.ok(examService.getCurrentExamsUrl(pageSize, pageNumber));
     }
 
     @GetMapping("/{id}")
@@ -89,9 +89,9 @@ public class ExamController {
     @GetMapping("/startExam/{url}")
     @ResponseBody
     public ResponseEntity<?> getExam(@PathVariable String url) {
-        
+
         Optional<Exam> exam = examService.findByUrl(url);
-        
+
         if (exam.isPresent()) {
             Exam anExam = exam.get();
             return ResponseEntity.ok(anExam);
@@ -101,7 +101,7 @@ public class ExamController {
 
     @PostMapping("/endExam")
     @ResponseBody
-    public ResponseEntity<?> postExam(@Valid @RequestBody List<AnswerDTO> answers){
+    public ResponseEntity<?> postExam(@Valid @RequestBody List<AnswerDTO> answers) {
         Result result = examService.submitExam(answers);
         return ResponseEntity.ok(result);
     }

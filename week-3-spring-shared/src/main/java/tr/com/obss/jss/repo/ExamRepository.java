@@ -1,11 +1,14 @@
 package tr.com.obss.jss.repo;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Pageable;
 
 import tr.com.obss.jss.entity.Exam;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,4 +21,11 @@ public interface ExamRepository extends JpaRepository<Exam, Long> {
     Optional<Exam> findByUrl(String url);
 
     Optional<Exam> findByNameStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(String name);
+
+
+    @Query("Select t from Exam t where t.startDate <= CURRENT_DATE and t.endDate >= CURRENT_DATE")
+    Page<Exam> findByStartBeforeAndEndAfter(Pageable page);
+
+    @Query("Select t.url from Exam t where t.startDate <= CURRENT_DATE and t.endDate >= CURRENT_DATE")
+    Page<String> findUrlByStartBeforeAndEndAfter(Pageable page);
 }

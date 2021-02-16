@@ -20,6 +20,7 @@ import tr.com.obss.jss.model.*;
 import tr.com.obss.jss.repo.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -107,6 +108,7 @@ public class ExamService implements ExamDetailsService {
             }
 
         }
+        //if points lower then 0 => set points to 0
         Result result = new Result();
         result.setGrade(totalPoints);
         result.setStudent(userRepository.findById(studentId).get());
@@ -129,6 +131,16 @@ public class ExamService implements ExamDetailsService {
             userRepository.save(student);
         }
         return returnResult;
+    }
+
+    public Page<Exam> getCurrentExams(int pageSize, int pageNumber){
+        Pageable paged = PageRequest.of(pageNumber, pageSize);
+        return examRepository.findByStartBeforeAndEndAfter(paged);
+    }
+
+    public Page<String> getCurrentExamsUrl(int pageSize, int pageNumber){
+        Pageable paged = PageRequest.of(pageNumber, pageSize);
+        return examRepository.findUrlByStartBeforeAndEndAfter(paged);
     }
 
     public Page<Exam> findAll(int pageSize, int pageNumber) {
