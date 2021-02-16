@@ -106,7 +106,7 @@ public class ExamController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/startExam/{name}")
+    @GetMapping("/startExam/findurl/{name}")
     @ResponseBody
     public ResponseEntity<?> getUrl(@PathVariable String name) {
         Optional<Exam> exam = examService.findByName(name);

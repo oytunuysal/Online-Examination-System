@@ -102,6 +102,7 @@ public class ExamService implements ExamDetailsService {
         Result result = new Result();
         result.setGrade(totalPoints);
         result.setStudent(userRepository.findById(studentId).get());
+        Result returnResult = resultRepository.save(result);
         if (theExam != null) {
             result.setExam(theExam);
             theExam.getResults().add(result);
@@ -114,7 +115,7 @@ public class ExamService implements ExamDetailsService {
             student.getResults().add(result);
             userRepository.save(student);
         }
-        return resultRepository.save(result);
+        return returnResult;
     }
 
     public Page<Exam> findAll(int pageSize, int pageNumber) {
