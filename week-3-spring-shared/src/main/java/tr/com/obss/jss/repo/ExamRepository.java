@@ -17,5 +17,5 @@ public interface ExamRepository extends JpaRepository<Exam, Long> {
 
     Optional<Exam> findByUrl(String url);
 
-    List<Exam> findByNameStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(String name);
+    Optional<Exam> findByNameStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(String name);
 }

@@ -82,7 +82,7 @@ public class ExamService implements ExamDetailsService {
         return examRepository.findByUrl(url);
     }
 
-    public List<Exam> findByName(String name) {
+    public Optional<Exam> findByName(String name) {
         return examRepository.findByNameStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(name);
     }
 

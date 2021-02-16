@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d7374a70-c9e0-4a72-b8a5-6eb3abba9a91" name="Default Changelist" comment="username -&gt; mail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/user/NewExam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/NewExam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/entity/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/entity/Exam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/repo/ExamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/repo/ExamRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/ExamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/ExamService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

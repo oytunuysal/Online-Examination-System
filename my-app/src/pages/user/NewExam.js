@@ -8,6 +8,9 @@ import { DatePicker, Space } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 const { Option } = Select;
 
+function handleChange(value) {
+      console.log(`selected ${value}`);
+    }
 
 class AddNewExam extends React.Component{
   state = {
@@ -33,9 +36,25 @@ class AddNewExam extends React.Component{
       })
   }
 
+  addAnswer(values){
+      // Axios.post("http://localhost:8080/login");
+      Axios.post(`${"http://localhost:8080/"}api/exams`, values, { withCredentials: true })
+        .then(() => {
+          successMessage('Answer Created!')
+        })
+    }
+
+    addExamUrl(examUrls){
+    Axios.post(`${"http://localhost:8080/"}api/startExam/{this.name}`, examUrls, { withCredentials: true })
+          .then(() => {
+            successMessage('Url Created!')
+          })
+    }
+
   componentDidMount() {
     this.getMembers();
   }
+
 
   getMembers(){
     getUsers().then((users) => {
@@ -67,12 +86,11 @@ class AddNewExam extends React.Component{
         <Col>
           <Form name="login-form" style={{ maxWidth: 300 }} onFinish={this.addProjectPlan}>
             <Form.Item name="name" rules={[{ required: true, message: "Is required" }]}>
-              <Input prefix={<BookOutlined className="site-form-item-icon" />} placeholder="examanem" />
+              <Input prefix={<BookOutlined className="site-form-item-icon" />} placeholder="examname" />
             </Form.Item>
             <Form.Item name="owner" rules={[{ required: true, message: "Is required" }]}>
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="owner" />
             </Form.Item>
-
 
             <Form.Item name="startDate" direction="vertical">
               <DatePicker onChange={this.onChange} placeholder="Start Date" />
@@ -80,7 +98,6 @@ class AddNewExam extends React.Component{
             </Form.Item>
             <Form.Item name="endDate" direction="vertical">
               <DatePicker onChange={this.onChange} placeholder="endDate" />
-
             </Form.Item>
 
             <Form.List name="questions">
@@ -100,35 +117,56 @@ class AddNewExam extends React.Component{
                         {...field}
                         name={[field.name, 'point']}
                         fieldKey={[field.fieldKey, 'point']}
-                        rules={[{ required: true, message: 'Missing assigned to' }]}
-                        
-                      >
-                        
+                        rules={[{ required: true, message: 'Missing assigned to' }]}>
                         <Input placeholder="point" />
-                      </Form.Item>
-                      <Form.Item
-                        {...field}
-                        name={[field.name, 'answer']}
-                        fieldKey={[field.fieldKey, 'answer']}
-                        rules={[{ required: true, message: 'Missing assigned to' }]}
-                        
-                      >
-                        
-                        <Input placeholder="answer" />
                       </Form.Item>
                       <Form.Item
                         {...field}
                         name={[field.name, 'penaltyPoint']}
                         fieldKey={[field.fieldKey, 'penaltyPoint']}
-                        rules={[{ required: true, message: 'Missing assigned to' }]}
-                        
-                      >
-                        
+                        rules={[{ required: true, message: 'Missing assigned to' }]}>
+
                         <Input placeholder="penaltyPoint" />
                       </Form.Item>
+
+                      <Row type="flex" justify="center" >
+                      <Col>
+                      <Form name="answer-form" style={{ maxWidth: 300 }} onFinish={this.addAnswer}>
+                      <Form.List name="answers">
+                      {(fields, { add, remove}) => (
+                      <>
+                        {fields.map(field => (
+                          <Space key={field.key} style={{ display: 'flex', width: 300 }} align="baseline">
+                            <Form.Item
+                              {...field}
+                              name={[field.name, 'answerText']}
+                              fieldKey={[field.fieldKey, 'answerText']}
+                              rules={[{ required: true, message: 'Missing answer' }]}>
+                              <Input placeholder="answerText" />
+                            </Form.Item>
+                            <Select defaultValue="false" style={{ width: 100 }} onChange={handleChange}>
+                                  <Option value="true">True</Option>
+                                  <Option value="false">False</Option>
+                            </Select>
+                            <MinusCircleOutlined onClick={() => remove(field.name)} />
+                            </Space>
+                            ))}
+                            <Form.Item>
+                                <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                                  Add Answer
+                                </Button>
+                           </Form.Item>
+                      </>
+                      )}
+                      </Form.List>
+                      </Form>
+                      </Col>
+                      </Row>
                       <MinusCircleOutlined onClick={() => remove(field.name)} />
+
                     </Space>
                   ))}
+
                   <Form.Item>
                     <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                       Add Exam
@@ -139,8 +177,8 @@ class AddNewExam extends React.Component{
             </Form.List>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" style={{ width: 150 }}>
-                Create Project Plan
+              <Button type="primary" htmlType="submit" onClick={() => this.addExamUrl()}style={{ width: 150 }}>
+                Create Exam
                           </Button>
             </Form.Item>
           </Form>

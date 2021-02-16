@@ -104,4 +104,14 @@ public class ExamController {
         System.out.println(answers);
         return ResponseEntity.ok(answers);
     }
+
+    @GetMapping("/startExam/{name}")
+    @ResponseBody
+    public ResponseEntity<?> getUrl(@PathVariable String name) {
+        Optional<Exam> exam = examService.findByName(name);
+        if (exam.isPresent()) {
+            return ResponseEntity.ok(exam.get().getUrl());
+        }
+        throw new IllegalArgumentException("Sınav bulunamadı");
+    }
 }
