@@ -2,6 +2,6 @@ package tr.com.obss.jss.cache;
 
 public class hello {
     public void imAMuffin(){
-        System.out.println("muffin time!");
+        System.out.println("muffin time! who wants a muffin");
     }
 }
