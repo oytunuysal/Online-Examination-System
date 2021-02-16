@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -72,16 +73,23 @@ public class ExamService implements ExamDetailsService {
 
     public Result submitExam(List<AnswerDTO> answers) {
         int totalPoints = 0;
-        long studentId = 4;
+        long studentId;
         long examId = 8;
+        long questionId = 0;
         boolean isAnswer;
-        Optional<Exam> exam = examRepository.findById(examId);
+
         Exam theExam = null;
         Question question;
 
-        if (exam.isPresent()) {
-            theExam = exam.get();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
         }
+        studentId = userRepository.findByUsername(username).get().getId(); // DANGER
+
         for (AnswerDTO answer : answers) {
 
             Optional<Answer> aOptional = answerRepository.findById(answer.getAnswerId());
@@ -89,6 +97,7 @@ public class ExamService implements ExamDetailsService {
                 Answer theAnswer = aOptional.get();
                 isAnswer = theAnswer.isAnswer();
                 question = questionRepository.findById(answer.getQuestionId()).get();
+                questionId = question.getId();
                 if (isAnswer) {
                     totalPoints += Integer.parseInt(question.getPoint());
 
@@ -98,19 +107,23 @@ public class ExamService implements ExamDetailsService {
             }
 
         }
-
         Result result = new Result();
         result.setGrade(totalPoints);
         result.setStudent(userRepository.findById(studentId).get());
         Result returnResult = resultRepository.save(result);
-        if (theExam != null) {
-            result.setExam(theExam);
-            theExam.getResults().add(result);
-            examRepository.save(theExam);
+
+        if (questionId != 0) {
+            Optional<Question> qOptional = questionRepository.findById(questionId);
+            if (qOptional.isPresent()) {
+                Exam exam = qOptional.get().getExam();
+                result.setExam(exam);
+                exam.getResults().add(result);
+                examRepository.save(exam);
+            }
         }
 
         Optional<User> studentOptional = userRepository.findById(studentId);
-        if(studentOptional.isPresent()){
+        if (studentOptional.isPresent()) {
             User student = studentOptional.get();
             student.getResults().add(result);
             userRepository.save(student);
