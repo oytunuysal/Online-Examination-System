@@ -28,3 +28,12 @@ export const getExams = () => {
         }));
     });
 };
+
+export const getOwnersExams = () => {
+    return axios.get(url + "/api/exams/ownersexams", { withCredentials: true }).then((response) => {
+        return response.data.map((examresults) => ({
+            examName: examresults.examName,
+            results: examresults.results
+        }));
+    });
+};

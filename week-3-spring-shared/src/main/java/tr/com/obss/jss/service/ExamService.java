@@ -21,6 +21,7 @@ import tr.com.obss.jss.repo.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -111,7 +112,7 @@ public class ExamService implements ExamDetailsService {
             }
 
         }
-        //if points lower then 0 => set points to 0
+        // if points lower then 0 => set points to 0
         Result result = new Result();
         result.setGrade(totalPoints);
         result.setStudent(userRepository.findById(studentId).get());
@@ -141,14 +142,34 @@ public class ExamService implements ExamDetailsService {
         return resultDTO;
     }
 
-    public Page<Exam> getCurrentExams(int pageSize, int pageNumber){
+    public Page<Exam> getCurrentExams(int pageSize, int pageNumber) {
         Pageable paged = PageRequest.of(pageNumber, pageSize);
         return examRepository.findByStartBeforeAndEndAfter(paged);
     }
 
-    public Page<String> getCurrentExamsUrl(int pageSize, int pageNumber){
+    public Page<String> getCurrentExamsUrl(int pageSize, int pageNumber) {
         Pageable paged = PageRequest.of(pageNumber, pageSize);
         return examRepository.findUrlByStartBeforeAndEndAfter(paged);
+    }
+
+    public List<ExamResultsDTO> getOwnersExams(int pageSize, int pageNumber) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        Pageable paged = PageRequest.of(pageNumber, pageSize);
+        long ownerId = userRepository.findByUsername(username).get().getId();
+        List<Exam> examList = examRepository.getByOwnerId(ownerId);
+        List<ExamResultsDTO> results = new ArrayList<>();
+        for (Exam exam : examList) {
+            if (exam.getOwner().getId() == ownerId) {
+                results.add(new ExamResultsDTO(exam.getName(), exam.getResults()));
+            }
+        }
+        return results;
     }
 
     public Page<Exam> findAll(int pageSize, int pageNumber) {

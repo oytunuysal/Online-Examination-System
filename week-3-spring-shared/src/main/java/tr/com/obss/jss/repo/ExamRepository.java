@@ -22,10 +22,14 @@ public interface ExamRepository extends JpaRepository<Exam, Long> {
 
     Optional<Exam> findByNameStartingWithAndOperationTypeIsNotNullAndActiveTrueOrderByIdDesc(String name);
 
-
     @Query("Select t from Exam t where t.startDate <= CURRENT_DATE and t.endDate >= CURRENT_DATE")
     Page<Exam> findByStartBeforeAndEndAfter(Pageable page);
 
     @Query("Select t.url from Exam t where t.startDate <= CURRENT_DATE and t.endDate >= CURRENT_DATE")
     Page<String> findUrlByStartBeforeAndEndAfter(Pageable page);
+
+    @Query(value = "select * from Exam e where e.owner_Id = :id", nativeQuery = true)
+    List<Exam> getByOwnerId(long id);
+
+
 }

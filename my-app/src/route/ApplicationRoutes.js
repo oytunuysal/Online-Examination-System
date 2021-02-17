@@ -16,6 +16,7 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import Exam from '../pages/exam/Exam';
 import Main from '../route/main';
 import ShowExams from '../pages/exam/ShowExams';
+import MyExams from '../pages/exam/MyExams';
 
 const { Sider, Content } = Layout;
 
@@ -51,6 +52,7 @@ const ApplicationRoutes = () => {
                             <Route path="/exam" component={Exam} />
                             <Route path="/global" component={Global} />
                             <Route path="/showexams" component={ShowExams} />
+                            <Route path="/myexams" component={MyExams} />
                             <Redirect to="/login" from="/" />
                         </Switch>
                     </Content>

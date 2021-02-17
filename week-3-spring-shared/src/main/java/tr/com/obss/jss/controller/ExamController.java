@@ -120,4 +120,12 @@ public class ExamController {
         }
         throw new IllegalArgumentException("Sınav bulunamadı");
     }
+
+    @GetMapping("/ownersexams")
+    @ResponseBody
+    public ResponseEntity<?> getOwnersExams(@RequestParam(name = "pageSize", defaultValue = "100") int pageSize,
+            @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber) {
+        return ResponseEntity.ok(examService.getOwnersExams(pageSize, pageNumber));
+    }
+
 }
