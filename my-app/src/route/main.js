@@ -13,7 +13,7 @@ import AddNewUser from "../pages/user/NewUser";
 import AddExam from "../pages/user/NewExam";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import Login from '../pages/login/login';
-import LoginStudent from '../pages/login/loginStudent';
+//import LoginStudent from '../pages/login/loginStudent';
 
 const { Header, Sider, Content } = Layout;
 
@@ -46,7 +46,7 @@ const Main = () => {
                         <Switch>
                             <Route path="/users" component={UserList} />
                             <Route path="/login" component={Login} />
-                            <Route path="/loginStudent" component={LoginStudent} />
+
                             <Redirect to="/main" from="/" />
                         </Switch>
                     </Content>

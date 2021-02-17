@@ -50,8 +50,9 @@ public class ResultService implements ResultDetailsService {
         return resultRepository.getByIdNative(id);
     }
 
-    public Result findTopByOrderByGrade(){
-        return resultRepository.findTopByOrderByGrade();
+    public Page<Result> findAllByOrderByGradeDesc(int pageSize, int pageNumber){
+        Pageable paged = PageRequest.of(pageNumber, pageSize);
+        return resultRepository.findAllByOrderByGradeDesc(paged);
     }
 
     public List<Result> findByUsername(String name) {
