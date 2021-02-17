@@ -21,11 +21,15 @@ const SideNavigation = () => {
     const handleAddExam = () => {
         history.push("/addexam");
     };
-    const handleLeaderboard = () => {//global leaderboard'u gösterir
-        history.push("/");
+    const handleLeaderboard = () => {
+        history.push("/leaderboard");
     };
     const handleShowExams = () => {
         history.push("/showexams");
+    };
+
+    const handleExam = () => {
+    history.push("/exam");
     };
 
     return (
@@ -54,6 +58,14 @@ const SideNavigation = () => {
                     <Menu.Item key="6" onClick={handleShowExams}><UserAddOutlined />
                         <span> Show Current Exams </span></Menu.Item>
                 </SubMenu>
+                <SubMenu key="sub2" icon={<ToolOutlined />} title="Student">
+                                    <Menu.Item key="6" onClick={handleShowExams}><UserAddOutlined />
+                                            <span> Show Current Exams </span></Menu.Item>
+                                    <Menu.Item key="7" onClick={handleExam}><UserAddOutlined />
+                                        <span> See Exam </span></Menu.Item>
+                                    <Menu.Item key="8" onClick={handleLeaderboard}><UserAddOutlined />
+                                        <span> See Global Leaderboard </span></Menu.Item>
+                                </SubMenu>
             </Menu>
         </div>
     );
