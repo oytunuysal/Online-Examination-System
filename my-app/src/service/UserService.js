@@ -16,3 +16,13 @@ export const getUsers = () => {
         }));
     });
 };
+
+export const getExams = () => {
+    return axios.get("http://localhost:8080/api/exams", { withCredentials: true }).then((response) => {
+        return response.data.content.map((exam) => ({
+            url: `${exam.url}`,
+            id: `${exam.id}`,
+            name: `${exam.name}`,
+        }));
+    });
+};

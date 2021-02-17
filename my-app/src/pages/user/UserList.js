@@ -67,7 +67,6 @@ class UserList extends React.Component {
         getUsers()
             .then((users) => {
                 let data = [];
-
                 users.map((user, index) => {
                     data.push({
                         key: user.username,

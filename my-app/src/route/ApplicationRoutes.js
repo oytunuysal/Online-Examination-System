@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SideNavigation from "../layout/SideN";
+import SideNavigation from "../layout/SideNavigation";
 import { Layout } from "antd";
 import {
     BrowserRouter as Router,
@@ -14,7 +14,8 @@ import AddExam from "../pages/user/NewExam";
 import Global from "../pages/leaderboard/leaderBoard";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import Exam from '../pages/exam/Exam';
-import Main from '../route/main'
+import Main from '../route/main';
+import ShowExams from '../pages/exam/ShowExams';
 
 const { Sider, Content } = Layout;
 
@@ -49,6 +50,7 @@ const ApplicationRoutes = () => {
                             <Route path="/addexam" component={AddExam} />
                             <Route path="/exam" component={Exam} />
                             <Route path="/global" component={Global} />
+                            <Route path="/showexams" component={ShowExams} />
                             <Redirect to="/login" from="/" />
                         </Switch>
                     </Content>

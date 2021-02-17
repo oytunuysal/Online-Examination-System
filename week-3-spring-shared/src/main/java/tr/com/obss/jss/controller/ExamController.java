@@ -33,9 +33,9 @@ public class ExamController {
 
     @GetMapping("")
     @ResponseBody
-    public ResponseEntity<?> get(@RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
+    public ResponseEntity<?> get(@RequestParam(name = "pageSize", defaultValue = "100") int pageSize,
             @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber) {
-        return ResponseEntity.ok(examService.getCurrentExamsUrl(pageSize, pageNumber));
+        return ResponseEntity.ok(examService.getCurrentExams(pageSize, pageNumber));
     }
 
     @GetMapping("/{id}")

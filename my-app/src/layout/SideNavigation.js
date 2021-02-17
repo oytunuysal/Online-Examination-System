@@ -9,8 +9,9 @@ const { SubMenu } = Menu;
 const SideNavigation = () => {
     const history = useHistory();
 
-const handleLogin = () => {
-history.push("/login")};
+    const handleLogin = () => {
+        history.push("/login")
+    };
     const handleUserClick = () => {
         history.push("/users");
     };
@@ -23,6 +24,9 @@ history.push("/login")};
     const handleLeaderboard = () => {//global leaderboard'u gösterir
         history.push("/");
     };
+    const handleShowExams = () => {
+        history.push("/showexams");
+    };
 
     return (
         <div>
@@ -34,8 +38,8 @@ history.push("/login")};
                 }}>
             </div>
             <Menu theme="dark" mode="inline">
-<Menu.Item key="1" onClick={handleLogin}><UserAddOutlined />
-                        <span> Login </span></Menu.Item>
+                <Menu.Item key="1" onClick={handleLogin}><UserAddOutlined />
+                    <span> Login </span></Menu.Item>
                 <SubMenu key="sub1" icon={<ToolOutlined />} title="Instructor">
                     <Menu.Item key="2" onClick={handleUserClick}>
                         <TeamOutlined />
@@ -47,6 +51,8 @@ history.push("/login")};
                         <span> See Results </span></Menu.Item>
                     <Menu.Item key="5" onClick={handleLeaderboard}><UserAddOutlined />
                         <span> See Global Leaderboard </span></Menu.Item>
+                    <Menu.Item key="6" onClick={handleShowExams}><UserAddOutlined />
+                        <span> Show Current Exams </span></Menu.Item>
                 </SubMenu>
             </Menu>
         </div>

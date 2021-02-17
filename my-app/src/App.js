@@ -4,7 +4,7 @@ import './App.css';
 import Main from "./route/main";
 import ApplicationRoutes from "./route/ApplicationRoutes";
 function App() {
-    return <Main />;
+    return <ApplicationRoutes />;
 }
 
 export default App;
