@@ -4,7 +4,7 @@ import { Row, Col, Input, Button, Form, Select } from "antd";
 import { UserOutlined, BookOutlined } from "@ant-design/icons";
 import { successMessage, url, getUsers } from "../../service/UserService";
 import Axios from 'axios';
-import { DatePicker, Space, Table, Radio } from 'antd';
+import { DatePicker, Space, Table, Radio, Modal } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 const { Option } = Select;
 
@@ -15,7 +15,11 @@ class Exam extends React.Component {
         possibleAnswers: [],
         answers: [],
         isLoading: true,
-        error: null
+        error: null,
+        visible: false,
+        points: 0,
+        trueanswers: 0,
+        falseanswers: 0,
     };
 
     columns = [
@@ -51,6 +55,17 @@ class Exam extends React.Component {
         },
     ]
 
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+
+    hideModal = () => {
+        this.setState({
+            visible: false,
+        });
+    };
 
 
     onChange(date, dateString) {
@@ -60,19 +75,27 @@ class Exam extends React.Component {
     answered(answer) {
         console.log("answerId " + answer.target.value.answerId);
         console.log("questionId " + answer.target.value.questionId);
-        this.state.answers.push({answerId: answer.target.value.answerId, questionId: answer.target.value.questionId});
+        this.state.answers.push({ answerId: answer.target.value.answerId, questionId: answer.target.value.questionId });
         console.log(this.state.answers);
     }
 
 
     addPublishExam() {
         // Axios.post("http://localhost:8080/login");
-        
+
         Axios.post(`${url}/api/exams/endExam`, this.state.answers, { withCredentials: true })//????????
-            .then(() => {
-                successMessage('Exam pushed!')
+            .then((response) => {
+                successMessage('Exam pushed!');
+                console.log(response.data);
+                this.setState({
+
+                    points: response.data.totalPoints,
+                    trueanswers: response.data.correctAnswers,
+                    falseanswers: response.data.wrongAnswers,
+                })
+                this.showModal();
             })
-        
+
 
         console.log(this.state.answers)
 
@@ -138,6 +161,17 @@ class Exam extends React.Component {
                                             </Button>
                                         </Form.Item>
                                     </Form>
+                                    <Modal
+                                        title="Your Result"
+                                        visible={this.state.visible}
+                                        onOk={this.hideModal}
+                                        onCancel={this.hideModal}
+                                        okText="Ok"
+                                    >
+                                        <p>Total Points: {this.state.points}</p>
+                                        <p>True: {this.state.trueanswers}</p>
+                                        <p>False: {this.state.falseanswers}</p>
+                                    </Modal>
                                 </Col>
                             </Row>
                         )

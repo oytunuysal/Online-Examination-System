@@ -72,12 +72,14 @@ public class ExamService implements ExamDetailsService {
         throw new IllegalArgumentException("Owner not found");
     }
 
-    public Result submitExam(List<AnswerDTO> answers) {
+    public ResultDTO submitExam(List<AnswerDTO> answers) {
         int totalPoints = 0;
         long studentId;
         long examId = 8;
         long questionId = 0;
         boolean isAnswer;
+        int correctAnswers = 0;
+        int wrongAnswers = 0;
 
         Exam theExam = null;
         Question question;
@@ -101,9 +103,10 @@ public class ExamService implements ExamDetailsService {
                 questionId = question.getId();
                 if (isAnswer) {
                     totalPoints += Integer.parseInt(question.getPoint());
-
+                    correctAnswers++;
                 } else {
                     totalPoints -= Integer.parseInt(question.getPenaltyPoint());
+                    wrongAnswers++;
                 }
             }
 
@@ -130,7 +133,12 @@ public class ExamService implements ExamDetailsService {
             student.getResults().add(result);
             userRepository.save(student);
         }
-        return returnResult;
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setTotalPoints(totalPoints);
+        resultDTO.setCorrectAnswers(correctAnswers);
+        resultDTO.setWrongAnswers(wrongAnswers);
+
+        return resultDTO;
     }
 
     public Page<Exam> getCurrentExams(int pageSize, int pageNumber){

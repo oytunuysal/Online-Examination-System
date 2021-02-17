@@ -11,6 +11,7 @@ import tr.com.obss.jss.entity.User;
 import tr.com.obss.jss.model.AnswerDTO;
 import tr.com.obss.jss.model.ExamDTO;
 import tr.com.obss.jss.model.ExamUpdateDTO;
+import tr.com.obss.jss.model.ResultDTO;
 import tr.com.obss.jss.service.ExamService;
 import tr.com.obss.jss.service.UserService;
 
@@ -102,7 +103,7 @@ public class ExamController {
     @PostMapping("/endExam")
     @ResponseBody
     public ResponseEntity<?> postExam(@Valid @RequestBody List<AnswerDTO> answers) {
-        Result result = examService.submitExam(answers);
+        ResultDTO result = examService.submitExam(answers);
         return ResponseEntity.ok(result);
     }
 
