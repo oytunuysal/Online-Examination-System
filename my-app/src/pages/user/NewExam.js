@@ -19,30 +19,16 @@ class AddNewExam extends React.Component{
     error: null
   };
 
-
-
-  //history = useHistory();
-
   onChange(date, dateString) {
     console.log(date, dateString);
   }
 
-
-  addProjectPlan(values){
-    // Axios.post("http://localhost:8080/login");
-    Axios.post(`${"http://localhost:8080/"}api/exams`, values, { withCredentials: true })
-      .then(() => {
-        successMessage('Exam Created!')
-      })
-  }
-
-  addAnswer(values){
-      // Axios.post("http://localhost:8080/login");
-      Axios.post(`${"http://localhost:8080/"}api/exams`, values, { withCredentials: true })
+    addNewExam(values){
+        Axios.post(`${"http://localhost:8080/"}api/exams`, values, { withCredentials: true })
         .then(() => {
-          successMessage('Answer Created!')
+            successMessage('Exam Created!')
         })
-    }
+    };
 
     addExamUrl(examUrls){
     Axios.post(`${"http://localhost:8080/"}api/startExam/{this.name}`, examUrls, { withCredentials: true })
@@ -54,7 +40,6 @@ class AddNewExam extends React.Component{
   componentDidMount() {
     this.getMembers();
   }
-
 
   getMembers(){
     getUsers().then((users) => {
@@ -84,12 +69,9 @@ class AddNewExam extends React.Component{
                     ) : (
       <Row type="flex" justify="center" style={{ minHeight: "100vh" }}>
         <Col>
-          <Form name="login-form" style={{ maxWidth: 300 }} onFinish={this.addProjectPlan}>
+          <Form name="login-form" style={{ maxWidth: 300 }} >
             <Form.Item name="name" rules={[{ required: true, message: "Is required" }]}>
               <Input prefix={<BookOutlined className="site-form-item-icon" />} placeholder="examname" />
-            </Form.Item>
-            <Form.Item name="owner" rules={[{ required: true, message: "Is required" }]}>
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="owner" />
             </Form.Item>
 
             <Form.Item name="startDate" direction="vertical">
@@ -100,7 +82,7 @@ class AddNewExam extends React.Component{
               <DatePicker onChange={this.onChange} placeholder="endDate" />
             </Form.Item>
 
-            <Form.List name="questions">
+            <Form.List name="questions" >
               {(fields, { add, remove }) => (
                 <>
                   {fields.map(field => (
@@ -125,13 +107,12 @@ class AddNewExam extends React.Component{
                         name={[field.name, 'penaltyPoint']}
                         fieldKey={[field.fieldKey, 'penaltyPoint']}
                         rules={[{ required: true, message: 'Missing assigned to' }]}>
-
                         <Input placeholder="penaltyPoint" />
                       </Form.Item>
 
                       <Row type="flex" justify="center" >
                       <Col>
-                      <Form name="answer-form" style={{ maxWidth: 300 }} onFinish={this.addAnswer}>
+
                       <Form.List name="answers">
                       {(fields, { add, remove}) => (
                       <>
@@ -159,7 +140,7 @@ class AddNewExam extends React.Component{
                       </>
                       )}
                       </Form.List>
-                      </Form>
+
                       </Col>
                       </Row>
                       <MinusCircleOutlined onClick={() => remove(field.name)} />
@@ -177,9 +158,9 @@ class AddNewExam extends React.Component{
             </Form.List>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" onClick={() => this.addExamUrl()}style={{ width: 150 }}>
+              <Button type="primary" htmlType="submit" onClick={this.addNewExam} style={{ width: 150 }}>
                 Create Exam
-                          </Button>
+              </Button>
             </Form.Item>
           </Form>
         </Col>

@@ -37,7 +37,7 @@ const handleToggle = (event) => {
             credentials: 'include',
             body: formBody
         }).then(()=>{
-            history.push("/addexam");
+            history.push("/newexam");
         })
     };
 

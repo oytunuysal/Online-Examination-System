@@ -3,13 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="d7374a70-c9e0-4a72-b8a5-6eb3abba9a91" name="Default Changelist" comment="username -&gt; mail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/SideNavigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/SideNavigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layout/SideNavigationStudent.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user/NewExam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/NewExam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user/UserList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/UserList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/route/ApplicationRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/route/ApplicationRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/route/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/route/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/controller/ResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/controller/ResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/repo/ResultRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/repo/ResultRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/ResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/ResultService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/route/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/ExamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/ExamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week-3-spring-shared/src/main/java/tr/com/obss/jss/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

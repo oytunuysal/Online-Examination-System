@@ -14,7 +14,6 @@ import AddExam from "../pages/user/NewExam";
 import Global from "../pages/leaderboard/leaderBoard";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import Exam from '../pages/exam/Exam';
-//import Main from '../route/main';
 import ShowExams from '../pages/exam/ShowExams';
 import MyExams from '../pages/exam/MyExams';
 
@@ -48,7 +47,7 @@ const ApplicationRoutes = () => {
                             <Route path="/users" component={UserList} />
                             <Route path="/login" component={Login} />
                             <Route path="/adduser" component={AddNewUser} />
-                            <Route path="/addexam" component={AddExam} />
+                            <Route path="/newexam" component={AddExam} />
                             <Route path="/exam" component={Exam} />
                             <Route path="/leaderboard" component={Global} />
                             <Route path="/showexams" component={ShowExams} />
