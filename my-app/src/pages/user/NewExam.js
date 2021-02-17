@@ -9,10 +9,10 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 const { Option } = Select;
 
 function handleChange(value) {
-      console.log(`selected ${value}`);
-    }
+  console.log(`selected ${value}`);
+}
 
-class AddNewExam extends React.Component{
+class AddNewExam extends React.Component {
   state = {
     members: [],
     isLoading: true,
@@ -28,35 +28,20 @@ class AddNewExam extends React.Component{
   }
 
 
-  addProjectPlan(values){
+  addProjectPlan(values) {
     // Axios.post("http://localhost:8080/login");
-    Axios.post(`${"http://localhost:8080/"}api/exams`, values, { withCredentials: true })
+    Axios.post(`${url}/api/exams`, values, { withCredentials: true })
       .then(() => {
         successMessage('Exam Created!')
       })
   }
-
-  addAnswer(values){
-      // Axios.post("http://localhost:8080/login");
-      Axios.post(`${"http://localhost:8080/"}api/exams`, values, { withCredentials: true })
-        .then(() => {
-          successMessage('Answer Created!')
-        })
-    }
-
-    addExamUrl(examUrls){
-    Axios.post(`${"http://localhost:8080/"}api/startExam/{this.name}`, examUrls, { withCredentials: true })
-          .then(() => {
-            successMessage('Url Created!')
-          })
-    }
 
   componentDidMount() {
     this.getMembers();
   }
 
 
-  getMembers(){
+  getMembers() {
     getUsers().then((users) => {
       let data = [];
 
@@ -66,132 +51,129 @@ class AddNewExam extends React.Component{
         );
         return data;
       });
-      
+
       this.setState({
         members: data,
         isLoading: false
       });
-    }).catch((error) => this.setState({error, isLoading:false}));
+    }).catch((error) => this.setState({ error, isLoading: false }));
   }
 
   render() {
-    const {isLoading, members, error} = this.state;
+    const { isLoading, members, error } = this.state;
     return (
       <React.Fragment>
         {!isLoading ? (
-                    error ? (
-                        `An error occured: ${error}`
-                    ) : (
-      <Row type="flex" justify="center" style={{ minHeight: "100vh" }}>
-        <Col>
-          <Form name="login-form" style={{ maxWidth: 300 }} onFinish={this.addProjectPlan}>
-            <Form.Item name="name" rules={[{ required: true, message: "Is required" }]}>
-              <Input prefix={<BookOutlined className="site-form-item-icon" />} placeholder="examname" />
-            </Form.Item>
-            <Form.Item name="owner" rules={[{ required: true, message: "Is required" }]}>
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="owner" />
-            </Form.Item>
+          error ? (
+            `An error occured: ${error}`
+          ) : (
+                  <Form name="login-form" style={{ maxWidth: 300 }} onFinish={this.addProjectPlan}>
+                    <Form.Item name="name" rules={[{ required: true, message: "Is required" }]}>
+                      <Input prefix={<BookOutlined className="site-form-item-icon" />} placeholder="examname" />
+                    </Form.Item>
 
-            <Form.Item name="startDate" direction="vertical">
-              <DatePicker onChange={this.onChange} placeholder="Start Date" />
+                    <Form.Item name="startDate" direction="vertical">
+                      <DatePicker onChange={this.onChange} placeholder="Start Date" />
 
-            </Form.Item>
-            <Form.Item name="endDate" direction="vertical">
-              <DatePicker onChange={this.onChange} placeholder="endDate" />
-            </Form.Item>
+                    </Form.Item>
+                    <Form.Item name="endDate" direction="vertical">
+                      <DatePicker onChange={this.onChange} placeholder="endDate" />
+                    </Form.Item>
 
-            <Form.List name="questions">
-              {(fields, { add, remove }) => (
-                <>
-                  {fields.map(field => (
-                    <Space key={field.key} style={{ display: 'flex', marginBottom: 8, width: 600 }} align="baseline">
-                      <Form.Item
-                        {...field}
-                        name={[field.name, 'questionText']}
-                        fieldKey={[field.fieldKey, 'questionText']}
-                        rules={[{ required: true, message: 'Missing task name' }]}
-                      >
-                        <Input placeholder="questionText" />
-                      </Form.Item>
-                      <Form.Item
-                        {...field}
-                        name={[field.name, 'point']}
-                        fieldKey={[field.fieldKey, 'point']}
-                        rules={[{ required: true, message: 'Missing assigned to' }]}>
-                        <Input placeholder="point" />
-                      </Form.Item>
-                      <Form.Item
-                        {...field}
-                        name={[field.name, 'penaltyPoint']}
-                        fieldKey={[field.fieldKey, 'penaltyPoint']}
-                        rules={[{ required: true, message: 'Missing assigned to' }]}>
+                    <Form.List name="questions">
+                      {(fields, { add, remove }) => (
+                        <div>
+                          {fields.map(field => (
+                            <Space key={field.key} style={{ display: 'flex', marginBottom: 8, width: 600 }} align="baseline">
+                              <Form.Item
+                                {...field}
+                                name={[field.name, 'questionText']}
+                                fieldKey={[field.fieldKey, 'questionText']}
+                                rules={[{ required: true, message: 'Missing task name' }]}
+                              >
+                                <Input placeholder="questionText" />
+                              </Form.Item>
+                              <Form.Item
+                                {...field}
+                                name={[field.name, 'point']}
+                                fieldKey={[field.fieldKey, 'point']}
+                                rules={[{ required: true, message: 'Missing assigned to' }]}>
+                                <Input placeholder="point" />
+                              </Form.Item>
+                              <Form.Item
+                                {...field}
+                                name={[field.name, 'penaltyPoint']}
+                                fieldKey={[field.fieldKey, 'penaltyPoint']}
+                                rules={[{ required: true, message: 'Missing assigned to' }]}>
 
-                        <Input placeholder="penaltyPoint" />
-                      </Form.Item>
+                                <Input placeholder="penaltyPoint" />
+                              </Form.Item>
 
-                      <Row type="flex" justify="center" >
-                      <Col>
-                      <Form name="answer-form" style={{ maxWidth: 300 }} onFinish={this.addAnswer}>
-                      <Form.List name="answers">
-                      {(fields, { add, remove}) => (
-                      <>
-                        {fields.map(field => (
-                          <Space key={field.key} style={{ display: 'flex', width: 300 }} align="baseline">
-                            <Form.Item
-                              {...field}
-                              name={[field.name, 'answerText']}
-                              fieldKey={[field.fieldKey, 'answerText']}
-                              rules={[{ required: true, message: 'Missing answer' }]}>
-                              <Input placeholder="answerText" />
-                            </Form.Item>
-                            <Select defaultValue="false" style={{ width: 100 }} onChange={handleChange}>
-                                  <Option value="true">True</Option>
-                                  <Option value="false">False</Option>
-                            </Select>
-                            <MinusCircleOutlined onClick={() => remove(field.name)} />
-                            </Space>
-                            ))}
-                            <Form.Item>
-                                <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                                  Add Answer
+                                  <Form name="login-form" style={{ maxWidth: 300 }}>
+                                    <Form.List name="answers">
+                                      {(answers, { add, remove }) => (
+                                        <>
+                                          {answers.map(answer => (
+                                            <Space key={answer.key} style={{ display: 'flex', width: 300 }} align="baseline">
+                                              <Form.Item
+                                                {...answer}
+                                                name={[answer.name, 'answerText']}
+                                                fieldKey={[answer.fieldKey, 'answerText']}
+                                                rules={[{ required: true, message: 'Missing answer' }]}>
+                                                <Input placeholder="answerText" />
+                                              </Form.Item>
+
+                                              <Form.Item
+                                                {...answer}
+                                                name={[answer.name, 'isAnswer']}
+                                                fieldKey={[answer.fieldKey, 'isAnswer']}
+                                                rules={[{ required: true, message: 'Missing answer' }]}>
+                                                <Select defaultValue="false" style={{ width: 100 }} onChange={handleChange}>
+                                                  <Option value={true}>True</Option>
+                                                  <Option value={false}>False</Option>
+                                                </Select>
+                                              </Form.Item>
+
+                                              <MinusCircleOutlined onClick={() => remove(answer.name)} />
+                                            </Space>
+                                          ))}
+                                          <Form.Item>
+                                            <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                                              Add Answer
                                 </Button>
-                           </Form.Item>
-                      </>
-                      )}
-                      </Form.List>
-                      </Form>
-                      </Col>
-                      </Row>
-                      <MinusCircleOutlined onClick={() => remove(field.name)} />
+                                          </Form.Item>
+                                        </>
+                                      )}
+                                    </Form.List>
+                                  </Form>
+                              <MinusCircleOutlined onClick={() => remove(field.name)} />
 
-                    </Space>
-                  ))}
+                            </Space>
+                          ))}
 
-                  <Form.Item>
-                    <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                      Add Exam
+                          <Form.Item>
+                            <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                              Add Exam
                 </Button>
-                  </Form.Item>
-                </>
-              )}
-            </Form.List>
+                          </Form.Item>
+                        </div>
+                      )}
+                    </Form.List>
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit" onClick={() => this.addExamUrl()}style={{ width: 150 }}>
-                Create Exam
+                    <Form.Item>
+                      <Button type="primary" htmlType="submit" onClick={this.addProjectPlan} style={{ width: 150 }}>
+                        Create Exam
                           </Button>
-            </Form.Item>
-          </Form>
-        </Col>
-      </Row>
-      ) 
-      ) : (
-        <p>Loading...</p>
-      )}
+                    </Form.Item>
+                  </Form>
+            )
+        ) : (
+            <p>Loading...</p>
+          )}
       </React.Fragment>
 
     );
-  
+
   }
 
 };

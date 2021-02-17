@@ -15,9 +15,6 @@ const SideNavigation = () => {
     const handleUserClick = () => {
         history.push("/users");
     };
-    const handleSeeResult = () => {//öğretmene sonuçları listeler
-        history.push("/adduser");
-    };
     const handleAddExam = () => {
         history.push("/addexam");
     };
@@ -29,7 +26,11 @@ const SideNavigation = () => {
     };
 
     const handleExam = () => {
-    history.push("/exam");
+        history.push("/exam");
+    };
+
+    const handleMyExams = () => {
+        history.push("/myexams");
     };
 
     return (
@@ -51,21 +52,21 @@ const SideNavigation = () => {
                     </Menu.Item>
                     <Menu.Item key="3" onClick={handleAddExam}><UserAddOutlined />
                         <span> Add New Exam </span></Menu.Item>
-                    <Menu.Item key="4" onClick={handleSeeResult}><UserAddOutlined />
-                        <span> See Results </span></Menu.Item>
+                    <Menu.Item key="10" onClick={handleMyExams}><UserAddOutlined />
+                        <span> My Exams </span></Menu.Item>
                     <Menu.Item key="5" onClick={handleLeaderboard}><UserAddOutlined />
                         <span> See Global Leaderboard </span></Menu.Item>
                     <Menu.Item key="6" onClick={handleShowExams}><UserAddOutlined />
                         <span> Show Current Exams </span></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" icon={<ToolOutlined />} title="Student">
-                                    <Menu.Item key="6" onClick={handleShowExams}><UserAddOutlined />
-                                            <span> Show Current Exams </span></Menu.Item>
-                                    <Menu.Item key="7" onClick={handleExam}><UserAddOutlined />
-                                        <span> See Exam </span></Menu.Item>
-                                    <Menu.Item key="8" onClick={handleLeaderboard}><UserAddOutlined />
-                                        <span> See Global Leaderboard </span></Menu.Item>
-                                </SubMenu>
+                    <Menu.Item key="6" onClick={handleShowExams}><UserAddOutlined />
+                        <span> Show Current Exams </span></Menu.Item>
+                    <Menu.Item key="7" onClick={handleExam}><UserAddOutlined />
+                        <span> See Exam </span></Menu.Item>
+                    <Menu.Item key="8" onClick={handleLeaderboard}><UserAddOutlined />
+                        <span> See Global Leaderboard </span></Menu.Item>
+                </SubMenu>
             </Menu>
         </div>
     );
