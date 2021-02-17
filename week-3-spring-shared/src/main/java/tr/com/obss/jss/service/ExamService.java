@@ -51,7 +51,7 @@ public class ExamService implements ExamDetailsService {
         exam.setQuestions(new ArrayList<>());
         exam.setResults(new ArrayList<>());
         String r = RandomString.make(10);
-        String url = "/api/exams/startExam/exam" + r;
+        String url =  r;
         exam.setUrl(url);
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
