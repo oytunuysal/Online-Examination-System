@@ -1,18 +1,18 @@
 import React from 'react';
 import { Row, Col, Table, Space, Input, Button, Pagination } from 'antd';
 import Title from "antd/lib/typography/Title";
-import { getResults } from "../../service/ResultService";
-import {successMessage } from "../../service/ResultService";
+import { getResults, url } from "../../service/ResultService";
+import { successMessage } from "../../service/ResultService";
 import Axios from "axios";
 const { Search } = Input;
 
 class leaderBoard extends React.Component {
-state = {
+    state = {
         results: [],
         isLoading: true,
         error: null
     };
-columns = [
+    columns = [
         {
             title: 'Student',
             dataIndex: 'student',
@@ -22,7 +22,7 @@ columns = [
             dataIndex: 'grade',
         },
     ]
- componentDidMount() {
+    componentDidMount() {
         getResults()
             .then((results) => {
                 let data = [];
@@ -41,7 +41,7 @@ columns = [
             })
             .catch((error) => this.setState({ error, isLoading: false }));
     }
-render() {
+    render() {
         const { isLoading, results, error } = this.state;
 
         return (
@@ -74,4 +74,4 @@ render() {
     }
 
 };
- export default leaderBoard;
+export default leaderBoard;

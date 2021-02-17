@@ -8,7 +8,7 @@ export const successMessage = (aMessage) => {
 };
 
 export const getResults = () => {
-    return axios.get("http://localhost:8080/api/results", { withCredentials: true }).then((response) => {
+    return axios.get(url + "/api/results", { withCredentials: true }).then((response) => {
         return response.data.content.map((result) => ({
             student: `${result.student.username}`,
             grade: `${result.grade}`,

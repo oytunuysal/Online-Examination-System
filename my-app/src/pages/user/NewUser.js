@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router";
 import { Row, Col, Input, Button, Form } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import {successMessage } from "../../service/UserService";
+import { successMessage, url } from "../../service/UserService";
 import Axios from 'axios';
 
 
@@ -11,13 +11,13 @@ const AddNewUser = () => {
 
     const addUser = (values) => {
         // Axios.post("http://localhost:8080/login");
-        Axios.post('http://localhost:8080/api/users', values, {withCredentials: true})
-        .then(()=>{
-            //if
-            history.push("/users");
-        })
+        Axios.post(url + '/api/users', values, { withCredentials: true })
+            .then(() => {
+                //if
+                history.push("/users");
+            })
 
-        
+
         //history.push("/users");
     };
 

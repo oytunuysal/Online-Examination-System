@@ -8,7 +8,7 @@ export const successMessage = (aMessage) => {
 };
 
 export const getUsers = () => {
-    return axios.get("http://localhost:8080/api/users", { withCredentials: true }).then((response) => {
+    return axios.get(url + "/api/users", { withCredentials: true }).then((response) => {
         return response.data.content.map((user) => ({
             username: `${user.username}`,
             id: `${user.id}`,
@@ -18,7 +18,7 @@ export const getUsers = () => {
 };
 
 export const getExams = () => {
-    return axios.get("http://localhost:8080/api/exams", { withCredentials: true }).then((response) => {
+    return axios.get(url + "/api/exams", { withCredentials: true }).then((response) => {
         return response.data.content.map((exam) => ({
             url: `${exam.url}`,
             id: `${exam.id}`,

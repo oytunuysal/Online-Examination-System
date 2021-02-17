@@ -11,7 +11,7 @@ import { Row, Col, Input, Button, Form } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import Axios from 'axios';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
-import {successMessage} from '../../service/UserService';
+import {successMessage, url} from '../../service/UserService';
 
 const NormalLoginForm = () => {
 const [collapse, setCollapse] = useState(false);
@@ -29,7 +29,7 @@ const handleToggle = (event) => {
         }
         formBody = formBody.join("&");
 
-        fetch('http://localhost:8080/login', {
+        fetch(url + '/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

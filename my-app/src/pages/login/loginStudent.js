@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { Row, Col, Input, Button, Form } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import Axios from 'axios';
-import {successMessage} from '../../service/UserService';
+import {successMessage, url} from '../../service/UserService';
 
 
 const NormalLoginFormStudent = () => {
@@ -18,7 +18,7 @@ const NormalLoginFormStudent = () => {
         }
         formBody = formBody.join("&");
 
-        fetch('http://localhost:8080/loginStudent', {
+        fetch(url + '/loginStudent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

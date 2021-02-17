@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Table, Space, Input, Button, Pagination } from "antd";
 import Title from "antd/lib/typography/Title";
 import { getUsers } from "../../service/UserService";
-import {successMessage } from "../../service/UserService";
+import {successMessage, url } from "../../service/UserService";
 import Axios from "axios";
 const { Search } = Input;
 
@@ -112,7 +112,7 @@ class UserList extends React.Component {
                                     placeholder="input search text"
                                     onSearch={(value) => (
                                         //useHistory().push(`/searchbook${value}`)
-                                        Axios.get(`http://localhost:8080/api/users/search?username=${value}`, { withCredentials: true })
+                                        Axios.get(`${url}/api/users/search?username=${value}`, { withCredentials: true })
                                             .then((userList) =>
                                                 (this.setState({ users: userList.data })))
                                     )}
