@@ -11,6 +11,7 @@
 	<groupId>tr.com.ege</groupId>
 	<artifactId>week-3-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>week-3-spring</name>
 	<description>Spring Boot Java Projesi</description>
 
