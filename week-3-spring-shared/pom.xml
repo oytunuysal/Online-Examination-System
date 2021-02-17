@@ -8,7 +8,7 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>tr.com.obss.jss</groupId>
+	<groupId>tr.com.ege</groupId>
 	<artifactId>week-3-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>week-3-spring</name>
