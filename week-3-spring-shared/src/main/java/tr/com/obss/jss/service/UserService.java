@@ -45,33 +45,6 @@ public class UserService implements UserDetailsService {
         user.setPassword(encoder.encode(userDto.getPassword()));
         user.setRoles(Stream.of(roleRepository.findByName("ROLE_STUDENT")).collect(Collectors.toSet()));
         User savedUser = userRepository.save(user);
-        /*
-
-        userCache.put(user);
-
-        Map<String, Map> resultMap = new HashMap<>();
-        resultMap.put("singleton", userCache.getMap());
-
-        */
-
-
-
-        /*
-
-        Object requestattr = httpServletRequest.getAttribute("requestattr");
-        LOGGER.info("Request Attribute 1 {}", requestattr);
-        Object sessionattr = httpSession.getAttribute("sessionattr");
-        LOGGER.info("Session Attribute 1 {}", sessionattr);
-
-        httpServletRequest.setAttribute("requestattr", new Date());
-        httpSession.setAttribute("sessionattr", new Date());
-
-        requestattr = httpServletRequest.getAttribute("requestattr");
-        LOGGER.info("Request Attribute 2 {}", requestattr);
-        sessionattr = httpSession.getAttribute("sessionattr");
-        LOGGER.info("Session Attribute 2 {}", sessionattr);
-
-        */
         return savedUser;
     }
 

@@ -111,7 +111,6 @@ class UserList extends React.Component {
 
                                     placeholder="input search text"
                                     onSearch={(value) => (
-                                        //useHistory().push(`/searchbook${value}`)
                                         Axios.get(`${url}/api/users/search?username=${value}`, { withCredentials: true })
                                             .then((userList) =>
                                                 (this.setState({ users: userList.data })))

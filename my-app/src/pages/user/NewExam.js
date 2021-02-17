@@ -19,10 +19,6 @@ class AddNewExam extends React.Component {
     error: null
   };
 
-
-
-  //history = useHistory();
-
   onChange(date, dateString) {
     console.log(date, dateString);
   }

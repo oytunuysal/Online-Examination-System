@@ -58,12 +58,12 @@ public class UserController {
         throw new IllegalArgumentException("Kullanıcı bulunamadı");
     }
 
-    @GetMapping("/search")
+  /*  @GetMapping("/search")
     @ResponseBody
     public ResponseEntity<?> get(@RequestParam(name = "username", defaultValue = "") String username) {
         List<User> userList = userService.findByUsername(username);
         return ResponseEntity.ok(userList);
-    }
+    }*/
 
     @GetMapping("/has-role-user")
     @ResponseBody

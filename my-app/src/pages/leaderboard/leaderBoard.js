@@ -54,7 +54,7 @@ class leaderBoard extends React.Component {
                                 <Row gutter={[40, 0]}>
                                     <Col span={24}>
                                         <Title level={2}>
-                                            ResultList
+                                            Leaderboard
                                         </Title>
                                     </Col>
                                 </Row>

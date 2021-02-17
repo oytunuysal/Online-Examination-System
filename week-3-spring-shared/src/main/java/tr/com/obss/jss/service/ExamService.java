@@ -44,6 +44,7 @@ public class ExamService implements ExamDetailsService {
 
     public Exam save(ExamDTO examDto) {
         Exam exam = new Exam();
+        long ownerId;
         exam.setName(examDto.getName());
         exam.setStartDate(examDto.getStartDate());
         exam.setEndDate(examDto.getEndDate());
@@ -52,20 +53,29 @@ public class ExamService implements ExamDetailsService {
         String r = RandomString.make(10);
         String url = "/api/exams/startExam/exam" + r;
         exam.setUrl(url);
-        Optional<User> owner = userRepository.getById(Long.parseLong(examDto.getOwnerId()));
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        ownerId = userRepository.findByUsername(username).get().getId();
+        Optional<User> owner = userRepository.getById(ownerId);
 
         if (owner.isPresent()) {
             exam.setOwner(owner.get());
             List<QuestionDTO> questionDTO = examDto.getQuestions();
-
-            for (QuestionDTO aQuestionDTO : questionDTO) {
-                Question question = new Question();
-                question.setQuestionText(aQuestionDTO.getQuestionText());
-                question.setPoint(aQuestionDTO.getPoint());
-                question.setPossibleAnswers(aQuestionDTO.getPossibleAnswers());
-                question.setPenaltyPoint(aQuestionDTO.getPenaltyPoint());
-                question.setExam(exam);
-                exam.getQuestions().add(question);
+            if(questionDTO != null){
+                for (QuestionDTO aQuestionDTO : questionDTO) {
+                    Question question = new Question();
+                    question.setQuestionText(aQuestionDTO.getQuestionText());
+                    question.setPoint(aQuestionDTO.getPoint());
+                    question.setPossibleAnswers(aQuestionDTO.getPossibleAnswers());
+                    question.setPenaltyPoint(aQuestionDTO.getPenaltyPoint());
+                    question.setExam(exam);
+                    exam.getQuestions().add(question);
+                }
             }
 
             return examRepository.save(exam);
