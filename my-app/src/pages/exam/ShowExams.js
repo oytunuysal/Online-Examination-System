@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Table, Space, Input, Button, Pagination } from "antd";
 import Title from "antd/lib/typography/Title";
 import { getExams } from "../../service/UserService";
-import { successMessage } from "../../service/UserService";
+import { successMessage , url} from "../../service/UserService";
 import Axios from "axios";
 const { Search } = Input;
 
@@ -28,6 +28,17 @@ class ShowExams extends React.Component {
             dataIndex: 'name',
 
         },
+        {
+            title: 'Start Date',
+            dataIndex: 'startDate',
+
+        },
+        {
+            title: 'End Date',
+            dataIndex: 'endDate',
+
+        },
+
     ]
 
 
@@ -40,9 +51,11 @@ class ShowExams extends React.Component {
                 exams.map((exam, index) => {
                     data.push({
                         key: exam.url,
-                        url: exam.url,
+                        url: url + "/api/exams/startExam/"+exam.url,
                         id: exam.id,
                         name: exam.name,
+                        startDate: exam.startDate,
+                        endDate: exam.endDate,
                     });
                     return data;
                 });

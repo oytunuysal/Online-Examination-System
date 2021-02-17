@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tr.com.obss.jss.entity.Exam;
 import tr.com.obss.jss.entity.Result;
@@ -80,6 +81,7 @@ public class ExamController {
 
     @PostMapping(value = "")
     @ResponseBody
+    @PreAuthorize("hasRole('ROLE_INSTRUCTOR')")
     public ResponseEntity<?> post(@Valid @RequestBody ExamDTO examDTO) {
 
         Exam exam = examService.save(examDTO);
@@ -89,6 +91,7 @@ public class ExamController {
 
     @GetMapping("/startExam/{url}")
     @ResponseBody
+    @PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<?> getExam(@PathVariable String url) {
 
         Optional<Exam> exam = examService.findByUrl(url);
@@ -102,6 +105,7 @@ public class ExamController {
 
     @PostMapping("/endExam")
     @ResponseBody
+    @PreAuthorize("hasRole('ROLE_STUDENT')")
     public ResponseEntity<?> postExam(@Valid @RequestBody List<AnswerDTO> answers) {
         ResultDTO result = examService.submitExam(answers);
         return ResponseEntity.ok(result);

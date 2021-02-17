@@ -23,6 +23,8 @@ export const getExams = () => {
             url: `${exam.url}`,
             id: `${exam.id}`,
             name: `${exam.name}`,
+            startDate: `${exam.startDate}`,
+            endDate: `${exam.endDate}`,
         }));
     });
 };

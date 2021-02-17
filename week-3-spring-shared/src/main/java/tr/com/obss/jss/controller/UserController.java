@@ -42,6 +42,7 @@ public class UserController {
 
     @GetMapping("")
     @ResponseBody
+    @PreAuthorize("hasRole('ROLE_INSTRUCTOR')")
     public ResponseEntity<?> get(@RequestParam(name="pageSize", defaultValue = "2") int pageSize,
                                  @RequestParam(name="pageNumber", defaultValue = "0") int pageNumber) {
         return ResponseEntity.ok(userService.findAll(pageSize, pageNumber));
